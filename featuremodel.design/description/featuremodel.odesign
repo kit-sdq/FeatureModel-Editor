@@ -3,6 +3,7 @@
   <ownedViewpoints name="featuremodel.viewpoint" label="FeatureModel Viewpoint" modelFileExtension="featuremodel">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="featuremodel.diagram" label="FeatureModel Diagram" initialisation="true" domainClass="featuremodel::FeatureDiagram" enablePopupBars="true">
       <metamodel href="http://www.example.org/featuremodel#/"/>
+      <layout xsi:type="description_1:CompositeLayout"/>
       <defaultLayer name="Default">
         <edgeMappings name="Mandatory" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="aql:self.child" sourceFinderExpression="aql:self.parent" domainClass="featuremodel::MandatoryRelation" useDomainElement="true">
           <style targetArrow="OutputFillClosedArrow">
@@ -133,7 +134,7 @@
           </ownedTools>
         </toolSections>
         <toolSections name="Single Child Relations">
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Mandatory Relation" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Mandatory']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Mandatory Relation" precondition="aql:preTarget.featuresHaveSharedAncestor(preSource) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Mandatory']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -147,7 +148,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Optional Relation" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Optional']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Optional Relation" precondition="aql:preTarget.featuresHaveSharedAncestor(preSource) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Optional']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -217,7 +218,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Add Child" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Multiple%20Children%20Relation']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Add Child" precondition="aql:preTarget.featuresHaveSharedAncestor(preSource.parent) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Multiple%20Children%20Relation']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -238,7 +239,7 @@
           </ownedTools>
         </toolSections>
         <toolSections name="Constraints">
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Requires" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Requires%20Constraint']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Requires" precondition="aql:preSource.featuresAreNotMutuallyConstrained(preTarget)  and preSource.featureIsChildOf(preTarget) == false and preSource.requiresConstraintIsPreventedByExcludesConstraint(preTarget) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Requires%20Constraint']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -252,7 +253,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Excludes" precondition="aql:preSource.eContainer().oclAsType(featuremodel::FeatureDiagram).excludesConstraintIsAllowed(preSource, preTarget)" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Excludes%20Constraint']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Excludes" precondition="aql:preSource.featuresAreNotMutuallyConstrained(preTarget)  and preSource.featureIsChildOf(preTarget) == false and preSource.excludesConstraintIsPreventedByRequiresConstraint(preTarget) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Excludes%20Constraint']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
