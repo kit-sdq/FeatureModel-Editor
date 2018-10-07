@@ -12,6 +12,7 @@ import featuremodel.ChildRelation;
 import featuremodel.ExcludesConstraint;
 import featuremodel.Feature;
 import featuremodel.FeatureDiagram;
+import featuremodel.MandatoryRelation;
 import featuremodel.MultipleChildrenRelation;
 import featuremodel.RequiresConstraint;
 import featuremodel.SingleChildRelation;
@@ -19,33 +20,23 @@ import featuremodel.SingleChildRelation;
 /**
  * The services class used by VSM.
  */
-public class Services {
-
-	public boolean featuresAreNotMutuallyConstrained(Feature preSource, Feature preTarget) {
-		FeatureDiagram featureDiagram = (FeatureDiagram) preSource.eContainer();
-
-		boolean constraintExists = featureDiagram.getConstraints().stream()
-				.anyMatch(c -> (c.getTarget().equals(preSource) && c.getSource().equals(preTarget))
-						|| (c.getSource().equals(preSource) && c.getTarget().equals(preTarget)));
-		return !constraintExists;
-	}
-
-	public Collection<SingleChildRelation> singleChildRelations(FeatureDiagram featureDiagram) {
+public class FeatureModelServices {
+	public static Collection<SingleChildRelation> singleChildRelations(FeatureDiagram featureDiagram) {
 		return featureDiagram.getChildRelations().stream().filter(r -> r instanceof SingleChildRelation)
 				.map(r -> (SingleChildRelation) r).collect(Collectors.toList());
 	}
 
-	public Collection<MultipleChildrenRelation> multipleChildrenRelations(FeatureDiagram featureDiagram) {
+	public static Collection<MultipleChildrenRelation> multipleChildrenRelations(FeatureDiagram featureDiagram) {
 		return featureDiagram.getChildRelations().stream().filter(r -> r instanceof MultipleChildrenRelation)
 				.map(r -> (MultipleChildrenRelation) r).collect(Collectors.toList());
 	}
 
-	public Collection<ExcludesConstraint> excludesConstraints(FeatureDiagram featureDiagram) {
+	public static Collection<ExcludesConstraint> excludesConstraints(FeatureDiagram featureDiagram) {
 		return featureDiagram.getConstraints().stream().filter(c -> c instanceof ExcludesConstraint)
 				.map(c -> (ExcludesConstraint) c).collect(Collectors.toList());
 	}
 
-	public Collection<RequiresConstraint> requiresConstraints(FeatureDiagram featureDiagram) {
+	public static Collection<RequiresConstraint> requiresConstraints(FeatureDiagram featureDiagram) {
 		return featureDiagram.getConstraints().stream().filter(c -> c instanceof RequiresConstraint)
 				.map(c -> (RequiresConstraint) c).collect(Collectors.toList());
 	}
@@ -57,33 +48,23 @@ public class Services {
 		multipleChildrenRelation.getChildren().remove(feature);
 	}
 
-	public boolean featureIsChildOf(Feature child, Feature parent) {
-		FeatureDiagram featureDiagram = (FeatureDiagram) parent.eContainer();
-		Collection<ChildRelation> childRelationsOfParent = featureDiagram.getChildRelations().stream()
-				.filter(c -> c.getParent() == parent).collect(Collectors.toList());
+	public static boolean featureIsDescendantOf(Feature descendant, Feature ancestor) {
+		Collection<Feature> directChildren = getFeaturesDirectChildren(ancestor);
 
-		Collection<Feature> directChildren = new ArrayList<Feature>();
-		for (ChildRelation childRelation : childRelationsOfParent) {
-			if (childRelation instanceof SingleChildRelation)
-				directChildren.add(((SingleChildRelation) childRelation).getChild());
-			else if (childRelation instanceof MultipleChildrenRelation)
-				directChildren.addAll(((MultipleChildrenRelation) childRelation).getChildren());
-		}
-
-		if (directChildren.contains(child))
+		if (directChildren.contains(descendant))
 			return true;
 		else {
 			for (Feature directChild : directChildren) {
-				if (featureIsChildOf(child, directChild))
+				if (featureIsDescendantOf(descendant, directChild))
 					return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean featuresHaveSharedAncestor(Feature firstFeature, Feature secondFeature) {
-		Collection<Feature> firstFeaturesAncestors = featureAncestors(firstFeature);
-		Collection<Feature> secondFeaturesAncestors = featureAncestors(secondFeature);
+	public static boolean featuresHaveSharedAncestor(Feature firstFeature, Feature secondFeature) {
+		Collection<Feature> firstFeaturesAncestors = getFeatureAncestors(firstFeature);
+		Collection<Feature> secondFeaturesAncestors = getFeatureAncestors(secondFeature);
 
 		firstFeaturesAncestors.add(firstFeature);
 		secondFeaturesAncestors.add(secondFeature);
@@ -91,7 +72,7 @@ public class Services {
 		return firstFeaturesAncestors.stream().anyMatch(f -> secondFeaturesAncestors.contains(f));
 	}
 
-	public Collection<Feature> featureParents(Feature feature) {
+	public static Collection<Feature> getFeatureParents(Feature feature) {
 		Collection<Feature> parents = new ArrayList<Feature>();
 		FeatureDiagram featureDiagram = (FeatureDiagram) feature.eContainer();
 		Collection<SingleChildRelation> singleChildRelations = singleChildRelations(featureDiagram);
@@ -105,20 +86,20 @@ public class Services {
 		return parents;
 	}
 
-	public Collection<Feature> featureAncestors(Feature feature) {
+	public static Collection<Feature> getFeatureAncestors(Feature feature) {
 		Collection<Feature> ancestors = new ArrayList<Feature>();
-		Collection<Feature> parents = featureParents(feature);
+		Collection<Feature> parents = getFeatureParents(feature);
 
 		ancestors.addAll(parents);
 
 		for (Feature parent : parents) {
-			ancestors.addAll(featureAncestors(parent));
+			ancestors.addAll(getFeatureAncestors(parent));
 		}
 
 		return ancestors;
 	}
 
-	public Collection<Feature> getFeaturesDirectChildren(Feature feature) {
+	public static Collection<Feature> getFeaturesDirectChildren(Feature feature) {
 		FeatureDiagram featureDiagram = (FeatureDiagram) feature.eContainer();
 		Collection<ChildRelation> childRelationsOfParent = featureDiagram.getChildRelations().stream()
 				.filter(c -> c.getParent() == feature).collect(Collectors.toList());
@@ -134,25 +115,68 @@ public class Services {
 		return directChildren;
 	}
 
-	public Collection<Feature> getAllFeaturesChildren(Feature feature) {
+	public static Collection<Feature> getAllFeatureDescendants(Feature feature) {
 		Collection<Feature> result = new ArrayList<Feature>();
 		Collection<Feature> children = getFeaturesDirectChildren(feature);
 
 		result.addAll(children);
 		for (Feature child : children) {
-			result.addAll(getAllFeaturesChildren(child));
+			result.addAll(getAllFeatureDescendants(child));
 		}
 		return result;
 	}
 
+	public static Collection<Feature> getDirectMandatoryChildren(Feature feature) {
+		FeatureDiagram featureDiagram = (FeatureDiagram) feature.eContainer();
+		Collection<Feature> directMandatoryChildren = featureDiagram.getChildRelations().stream().filter(r -> (r instanceof MandatoryRelation) && r.getParent() == feature).map(r -> (MandatoryRelation) r).map(r -> r.getChild()).collect(Collectors.toList());
+		return directMandatoryChildren;
+	}
+	
+	public static Collection<Feature> getAllMandatoryDescendants(Feature feature) {
+		Collection<Feature> result = new ArrayList<Feature>();
+		Collection<Feature> children = getDirectMandatoryChildren(feature);
+		
+		result.addAll(children);
+		for (Feature child : children) {
+			result.addAll(getAllMandatoryDescendants(child));
+		}
+		return result;
+	}
+	
+	public static Collection<Feature> getDirectlyRequiredFeatures(Feature feature) {
+		FeatureDiagram featureDiagram = (FeatureDiagram) feature.eContainer();
+		Collection<Feature> directlyRequiredFeatures = featureDiagram.getConstraints().stream().filter(c -> (c instanceof RequiresConstraint) && c.getSource() == feature).map(c -> c.getTarget()).collect(Collectors.toList());
+		return directlyRequiredFeatures;
+	}
+	
+	public static Collection<Feature> getAllRequiredFeatures(Feature feature) {
+		Collection<Feature> result = new ArrayList<Feature>();
+		Collection<Feature> requiredFeatures = getDirectlyRequiredFeatures(feature);
+		
+		result.addAll(requiredFeatures);
+		for (Feature child : requiredFeatures) {
+			result.addAll(getAllRequiredFeatures(child));
+		}
+		return result;
+	}
+
+	public boolean featuresAreNotMutuallyConstrained(Feature preSource, Feature preTarget) {
+		FeatureDiagram featureDiagram = (FeatureDiagram) preSource.eContainer();
+
+		boolean constraintExists = featureDiagram.getConstraints().stream()
+				.anyMatch(c -> (c.getTarget().equals(preSource) && c.getSource().equals(preTarget))
+						|| (c.getSource().equals(preSource) && c.getTarget().equals(preTarget)));
+		return !constraintExists;
+	}
+
 	public boolean requiresConstraintIsPreventedByExcludesConstraint(Feature preSource, Feature preTarget) {
-		Collection<Feature> sourceHierarchy = featureAncestors(preSource);
-		Collection<Feature> targetHierarchy = featureAncestors(preTarget);
+		Collection<Feature> sourceHierarchy = getFeatureAncestors(preSource);
+		Collection<Feature> targetHierarchy = getFeatureAncestors(preTarget);
 
 		sourceHierarchy.add(preSource);
 		targetHierarchy.add(preTarget);
 
-		Collection<Feature> allFeaturesChildren = getAllFeaturesChildren(preSource);
+		Collection<Feature> allFeaturesChildren = getAllFeatureDescendants(preSource);
 		sourceHierarchy.addAll(allFeaturesChildren);
 
 		FeatureDiagram featureDiagram = (FeatureDiagram) preSource.eContainer();
@@ -168,11 +192,11 @@ public class Services {
 	}
 
 	public boolean excludesConstraintIsPreventedByRequiresConstraint(Feature preSource, Feature preTarget) {
-		Collection<Feature> sourceAncestors = featureAncestors(preSource);
-		Collection<Feature> targetAncestors = featureAncestors(preTarget);
+		Collection<Feature> sourceAncestors = getFeatureAncestors(preSource);
+		Collection<Feature> targetAncestors = getFeatureAncestors(preTarget);
 
-		Collection<Feature> sourceChildren = getAllFeaturesChildren(preSource);
-		Collection<Feature> targetChildren = getAllFeaturesChildren(preTarget);
+		Collection<Feature> sourceChildren = getAllFeatureDescendants(preSource);
+		Collection<Feature> targetChildren = getAllFeatureDescendants(preTarget);
 
 		Collection<Feature> sourceHierarchy = new ArrayList<Feature>();
 		Collection<Feature> targetHierarchy = new ArrayList<Feature>();
@@ -191,7 +215,7 @@ public class Services {
 
 		return requiresConstraints.stream()
 				.anyMatch(c -> (((sourceHierarchy.contains(c.getSource()))
-						&& (targetChildren.contains(c.getTarget()) || c.getTarget().equals(preTarget)))) 
+						&& (targetChildren.contains(c.getTarget()) || c.getTarget().equals(preTarget))))
 						|| (((targetHierarchy.contains(c.getSource()))
 								&& (sourceChildren.contains(c.getTarget()) || c.getTarget().equals(preSource)))));
 
