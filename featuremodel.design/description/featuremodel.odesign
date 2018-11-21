@@ -239,7 +239,7 @@
           </ownedTools>
         </toolSections>
         <toolSections name="Constraints">
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Requires" precondition="aql:preSource.featuresAreNotMutuallyConstrained(preTarget)  and preSource.featureIsDescendantOf(preTarget) == false and preSource.requiresConstraintIsPreventedByExcludesConstraint(preTarget) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Requires%20Constraint']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Requires" precondition="aql:preSource.featuresAreNotMutuallyConstrained(preTarget)  and preSource.featureIsDescendantOf(preTarget) == false and preTarget.featureIsDescendantOf(preSource) == false and preSource.requiresConstraintIsPreventedByExcludesConstraint(preTarget) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Requires%20Constraint']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -253,7 +253,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Excludes" precondition="aql:preSource.featuresAreNotMutuallyConstrained(preTarget)  and preSource.featureIsDescendantOf(preTarget) == false and preSource.excludesConstraintIsPreventedByRequiresConstraint(preTarget) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Excludes%20Constraint']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Excludes" precondition="aql:preSource.featuresAreNotMutuallyConstrained(preTarget)  and preSource.featureIsDescendantOf(preTarget) == false and preTarget.featureIsDescendantOf(preSource) == false and preSource.excludesConstraintIsPreventedByRequiresConstraint(preTarget) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Excludes%20Constraint']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
