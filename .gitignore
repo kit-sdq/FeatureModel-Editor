@@ -1,1 +1,9 @@
+*.class
+*.zip
+.classpath
+.project
+/.metadata/
+/.recommenders/
+.settings/
+target/
 bin/

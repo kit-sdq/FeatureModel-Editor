@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="featuremodel" version="12.0.0.2017041100">
+  <ownedViewpoints name="featuremodel.viewpoint" label="FeatureModel Viewpoint" modelFileExtension="featuremodel">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="featuremodel.diagram" label="FeatureModel Diagram" initialisation="true" domainClass="featuremodel::FeatureDiagram" enablePopupBars="true">
+      <metamodel href="http://www.example.org/featuremodel#/"/>
+      <layout xsi:type="description_1:CompositeLayout"/>
+      <defaultLayer name="Default">
+        <edgeMappings name="Mandatory" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="aql:self.child" sourceFinderExpression="aql:self.parent" domainClass="featuremodel::MandatoryRelation" useDomainElement="true">
+          <style targetArrow="OutputFillClosedArrow">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="Optional" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="aql:self.child" sourceFinderExpression="aql:self.parent" domainClass="featuremodel::OptionalRelation" useDomainElement="true">
+          <style targetArrow="OutputClosedArrow">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="Multiple Children Relation" deletionDescription="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Delete%20multiple%20children%20relation']" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Or%20Docking%20site'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Alternative%20Docking%20site']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="aql:self.children">
+          <style targetArrow="NoDecoration">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="Requires Constraint" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="featuremodel::RequiresConstraint" useDomainElement="true">
+          <style>
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;requires>>">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="Excludes Constraint" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="featuremodel::ExcludesConstraint" useDomainElement="true">
+          <style sourceArrow="InputArrow">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;excludes>>">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="Feature" deletionDescription="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Delete%20Feature']" semanticCandidatesExpression="feature:features" domainClass="featuremodel::Feature">
+          <borderedNodeMappings name="Or Docking site" semanticCandidatesExpression="aql:self.eContainer().childRelations->select(r | r.oclIsTypeOf(featuremodel::OrRelation) and r.oclAsType(featuremodel::OrRelation).parent == self)" domainClass="featuremodel::OrRelation">
+            <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </style>
+          </borderedNodeMappings>
+          <borderedNodeMappings name="Alternative Docking site" semanticCandidatesExpression="aql:self.eContainer().childRelations->select(r | r.oclIsTypeOf(featuremodel::AlternativeRelation) and r.oclAsType(featuremodel::AlternativeRelation).parent == self)" domainClass="featuremodel::AlternativeRelation">
+            <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </borderedNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
+          <conditionnalStyles predicateExpression="aql:self == self.eContainer().rootFeature">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" borderLineStyle="dash" showIcon="false">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </conditionnalStyles>
+        </containerMappings>
+        <toolSections name="Features">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Create root feature" precondition="aql:container.rootFeature == null" containerMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::Feature" referenceName="features">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="Root Feature"/>
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="rootFeature" valueExpression="var:instance"/>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Create sub-feature" containerMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::Feature" referenceName="features">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Feature' + container.features->size()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="Delete Feature">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:For" expression="aql:element.eContainer().oclAsType(featuremodel::FeatureDiagram).singleChildRelations()">
+                  <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:i.parent == element or i.child == element">
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:i">
+                      <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+                <subModelOperations xsi:type="tool_1:For" expression="aql:element.eContainer().oclAsType(featuremodel::FeatureDiagram).multipleChildrenRelations()">
+                  <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:i.parent == element or i.children->includes(element)">
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:i">
+                      <subModelOperations xsi:type="tool_1:Unset" featureName="children" elementExpression="var:element"/>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+                <subModelOperations xsi:type="tool_1:For" expression="aql:element.eContainer().oclAsType(featuremodel::FeatureDiagram).constraints">
+                  <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:i.source == element or i.target == element">
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:i">
+                      <subModelOperations xsi:type="tool_1:RemoveElement"/>
+                    </subModelOperations>
+                  </subModelOperations>
+                </subModelOperations>
+                <subModelOperations xsi:type="tool_1:RemoveElement"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Single Child Relations">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Mandatory Relation" precondition="aql:preTarget.featuresHaveSharedAncestor(preSource) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Mandatory']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source.eContainer().oclAsType(featuremodel::FeatureDiagram)">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::MandatoryRelation" referenceName="childRelations">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="parent" valueExpression="var:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="child" valueExpression="var:target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Optional Relation" precondition="aql:preTarget.featuresHaveSharedAncestor(preSource) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Optional']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source.eContainer().oclAsType(featuremodel::FeatureDiagram)">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::OptionalRelation" referenceName="childRelations">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="parent" valueExpression="var:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="child" valueExpression="var:target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ToolGroup" name="Add child feature">
+            <tools xsi:type="tool_1:ToolDescription" name="Add mandatory child feature" precondition="aql:container.oclIsTypeOf(featuremodel::Feature)">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element.eContainer().oclAsType(featuremodel::FeatureDiagram)">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::Feature" referenceName="features" variableName="subFeature">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Feature' + element.eContainer().oclAsType(featuremodel::FeatureDiagram).features->size()"/>
+                  </subModelOperations>
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::MandatoryRelation" referenceName="childRelations" variableName="relation">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="parent" valueExpression="var:element"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="child" valueExpression="var:subFeature"/>
+                  </subModelOperations>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+            <tools xsi:type="tool_1:ToolDescription" name="Add optional child feature" precondition="aql:container.oclIsTypeOf(featuremodel::Feature)">
+              <element name="element"/>
+              <elementView name="elementView"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:element.eContainer().oclAsType(featuremodel::FeatureDiagram)">
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::Feature" referenceName="features" variableName="subFeature">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'Feature' + element.eContainer().oclAsType(featuremodel::FeatureDiagram).features->size()"/>
+                  </subModelOperations>
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::OptionalRelation" referenceName="childRelations" variableName="relation">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="parent" valueExpression="var:element"/>
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="child" valueExpression="var:subFeature"/>
+                  </subModelOperations>
+                </firstModelOperations>
+              </initialOperation>
+            </tools>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Multiple Child Relations">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Or Relation" nodeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Or%20Docking%20site']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container.eContainer().oclAsType(featuremodel::FeatureDiagram)">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::OrRelation" referenceName="childRelations">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="parent" valueExpression="var:container"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Alternative Relation" nodeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Alternative%20Docking%20site']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:container.eContainer().oclAsType(featuremodel::FeatureDiagram)">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::AlternativeRelation" referenceName="childRelations">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="parent" valueExpression="var:container"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Add Child" precondition="aql:preTarget.featuresHaveSharedAncestor(preSource.parent) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Multiple%20Children%20Relation']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:source">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="children" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="Delete multiple children relation">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:elementView.oclAsType(diagram::DEdge).removeFeatureFromMultipleChildrenRelation()"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Constraints">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Requires" precondition="aql:preSource.featuresAreNotMutuallyConstrained(preTarget)  and preSource.featureIsDescendantOf(preTarget) == false and preTarget.featureIsDescendantOf(preSource) == false and preSource.requiresConstraintIsPreventedByExcludesConstraint(preTarget) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Requires%20Constraint']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source.eContainer().oclAsType(featuremodel::FeatureDiagram)">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::RequiresConstraint" referenceName="constraints">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Excludes" precondition="aql:preSource.featuresAreNotMutuallyConstrained(preTarget)  and preSource.featureIsDescendantOf(preTarget) == false and preTarget.featureIsDescendantOf(preSource) == false and preSource.excludesConstraintIsPreventedByRequiresConstraint(preTarget) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Excludes%20Constraint']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:source.eContainer().oclAsType(featuremodel::FeatureDiagram)">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::ExcludesConstraint" referenceName="constraints">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:source"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="edu.kit.kastel.sdq.featuremodel.design.FeatureModelServices"/>
+  </ownedViewpoints>
+</description:Group>

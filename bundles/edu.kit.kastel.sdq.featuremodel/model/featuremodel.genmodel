@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/edu.kit.kastel.sdq.featuremodel/src" creationIcons="false"
+    editDirectory="/edu.kit.kastel.sdq.featuremodel.edit/src" editorDirectory="/edu.kit.kastel.sdq.featuremodel.editor/src"
+    modelPluginID="edu.kit.kastel.sdq.featuremodel" modelName="Featuremodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0"
+    copyrightFields="false" importOrganizing="true">
+  <foreignModel>featuremodel.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Featuremodel" basePackage="edu.kit.kastel.sdq" disposableProviderFactory="true"
+      ecorePackage="featuremodel.ecore#/">
+    <genClasses ecoreClass="featuremodel.ecore#//FeatureDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featuremodel.ecore#//FeatureDiagram/constraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featuremodel.ecore#//FeatureDiagram/features"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//FeatureDiagram/rootFeature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featuremodel.ecore#//FeatureDiagram/childRelations"/>
+    </genClasses>
+    <genClasses ecoreClass="featuremodel.ecore#//Feature"/>
+    <genClasses image="false" ecoreClass="featuremodel.ecore#//Constraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//Constraint/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//Constraint/target"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="featuremodel.ecore#//ChildRelation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//ChildRelation/parent"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="featuremodel.ecore#//SingleChildRelation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//SingleChildRelation/child"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="featuremodel.ecore#//MultipleChildrenRelation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//MultipleChildrenRelation/children"/>
+    </genClasses>
+    <genClasses ecoreClass="featuremodel.ecore#//RequiresConstraint"/>
+    <genClasses ecoreClass="featuremodel.ecore#//ExcludesConstraint"/>
+    <genClasses ecoreClass="featuremodel.ecore#//MandatoryRelation"/>
+    <genClasses ecoreClass="featuremodel.ecore#//OptionalRelation"/>
+    <genClasses ecoreClass="featuremodel.ecore#//OrRelation"/>
+    <genClasses ecoreClass="featuremodel.ecore#//AlternativeRelation"/>
+    <genClasses image="false" ecoreClass="featuremodel.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featuremodel.ecore#//NamedElement/name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
