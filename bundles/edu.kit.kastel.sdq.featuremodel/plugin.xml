@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated featuremodel -->
       <package
-            uri="http://www.example.org/edu/kit/kastel/sdq/featuremodel"
+            uri="http://www.example.org/featuremodel"
             class="edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage"
             genModel="model/featuremodel.genmodel"/>
    </extension>

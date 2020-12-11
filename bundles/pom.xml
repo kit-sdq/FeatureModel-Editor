@@ -16,6 +16,8 @@
 		<module>edu.kit.kastel.sdq.featuremodel.design</module>
 		<module>edu.kit.kastel.sdq.featuremodel.edit</module>
 		<module>edu.kit.kastel.sdq.featuremodel.editor</module>
+		<module>edu.kit.kastel.sdq.featuremodel.newFmProjectWizard</module>
+		<module>edu.kit.kastel.sdq.featuremodel.newFmProjectFromEcoreWizard</module>
 	</modules>
 	
 </project>

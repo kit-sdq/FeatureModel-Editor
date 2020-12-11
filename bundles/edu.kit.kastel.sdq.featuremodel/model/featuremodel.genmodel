@@ -16,7 +16,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//FeatureDiagram/rootFeature"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featuremodel.ecore#//FeatureDiagram/childRelations"/>
     </genClasses>
-    <genClasses ecoreClass="featuremodel.ecore#//Feature"/>
+    <genClasses ecoreClass="featuremodel.ecore#//Feature">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//Feature/metamodel"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="featuremodel.ecore#//Constraint">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//Constraint/source"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//Constraint/target"/>
@@ -38,6 +40,9 @@
     <genClasses ecoreClass="featuremodel.ecore#//AlternativeRelation"/>
     <genClasses image="false" ecoreClass="featuremodel.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featuremodel.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="featuremodel.ecore#//Metamodel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featuremodel.ecore#//Metamodel/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

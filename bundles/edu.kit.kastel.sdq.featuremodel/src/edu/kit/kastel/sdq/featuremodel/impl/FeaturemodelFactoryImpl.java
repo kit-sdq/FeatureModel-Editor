@@ -72,6 +72,8 @@ public class FeaturemodelFactoryImpl extends EFactoryImpl implements Featuremode
 			return createOrRelation();
 		case FeaturemodelPackage.ALTERNATIVE_RELATION:
 			return createAlternativeRelation();
+		case FeaturemodelPackage.METAMODEL:
+			return createMetamodel();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -163,6 +165,17 @@ public class FeaturemodelFactoryImpl extends EFactoryImpl implements Featuremode
 	public AlternativeRelation createAlternativeRelation() {
 		AlternativeRelationImpl alternativeRelation = new AlternativeRelationImpl();
 		return alternativeRelation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Metamodel createMetamodel() {
+		MetamodelImpl metamodel = new MetamodelImpl();
+		return metamodel;
 	}
 
 	/**

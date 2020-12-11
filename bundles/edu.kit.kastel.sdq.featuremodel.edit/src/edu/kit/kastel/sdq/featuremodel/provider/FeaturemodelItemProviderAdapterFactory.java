@@ -257,6 +257,29 @@ public class FeaturemodelItemProviderAdapterFactory extends FeaturemodelAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.kit.kastel.sdq.featuremodel.Metamodel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MetamodelItemProvider metamodelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.kit.kastel.sdq.featuremodel.Metamodel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMetamodelAdapter() {
+		if (metamodelItemProvider == null) {
+			metamodelItemProvider = new MetamodelItemProvider(this);
+		}
+
+		return metamodelItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -377,6 +400,8 @@ public class FeaturemodelItemProviderAdapterFactory extends FeaturemodelAdapterF
 			orRelationItemProvider.dispose();
 		if (alternativeRelationItemProvider != null)
 			alternativeRelationItemProvider.dispose();
+		if (metamodelItemProvider != null)
+			metamodelItemProvider.dispose();
 	}
 
 }

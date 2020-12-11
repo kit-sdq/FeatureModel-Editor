@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="edu.kit.kastel.sdq.case4lang.wizards"
+            class="edu.kit.kastel.sdq.featuremodel.newfmprojectfromecorewizard.NewFmProjectFromEcoreWizard"
+            id="edu.kit.kastel.sdq.featuremodel.newFmProjectFromEcoreWizard"
+            name="FM Project From Ecore"
+            project="true">
+      </wizard>
+   </extension>
+
+</plugin>

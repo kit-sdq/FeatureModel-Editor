@@ -167,13 +167,22 @@ public interface FeaturemodelPackage extends EPackage {
 	int FEATURE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Metamodel</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__METAMODEL = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int FEATURE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.kastel.sdq.featuremodel.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -537,6 +546,34 @@ public interface FeaturemodelPackage extends EPackage {
 	int ALTERNATIVE_RELATION_FEATURE_COUNT = MULTIPLE_CHILDREN_RELATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link edu.kit.kastel.sdq.featuremodel.impl.MetamodelImpl <em>Metamodel</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.kit.kastel.sdq.featuremodel.impl.MetamodelImpl
+	 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getMetamodel()
+	 * @generated
+	 */
+	int METAMODEL = 13;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Metamodel</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_FEATURE_COUNT = 1;
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.featuremodel.FeatureDiagram <em>Feature Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -599,6 +636,17 @@ public interface FeaturemodelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getFeature();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.kit.kastel.sdq.featuremodel.Feature#getMetamodel <em>Metamodel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Metamodel</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.Feature#getMetamodel()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EReference getFeature_Metamodel();
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.featuremodel.Constraint <em>Constraint</em>}'.
@@ -777,6 +825,27 @@ public interface FeaturemodelPackage extends EPackage {
 	EAttribute getNamedElement_Name();
 
 	/**
+	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.featuremodel.Metamodel <em>Metamodel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Metamodel</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.Metamodel
+	 * @generated
+	 */
+	EClass getMetamodel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.kit.kastel.sdq.featuremodel.Metamodel#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.Metamodel#getName()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EAttribute getMetamodel_Name();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -849,6 +918,14 @@ public interface FeaturemodelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass FEATURE = eINSTANCE.getFeature();
+
+		/**
+		 * The meta object literal for the '<em><b>Metamodel</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE__METAMODEL = eINSTANCE.getFeature_Metamodel();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.kastel.sdq.featuremodel.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -1007,6 +1084,24 @@ public interface FeaturemodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
+
+		/**
+		 * The meta object literal for the '{@link edu.kit.kastel.sdq.featuremodel.impl.MetamodelImpl <em>Metamodel</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.kit.kastel.sdq.featuremodel.impl.MetamodelImpl
+		 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getMetamodel()
+		 * @generated
+		 */
+		EClass METAMODEL = eINSTANCE.getMetamodel();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METAMODEL__NAME = eINSTANCE.getMetamodel_Name();
 
 	}
 

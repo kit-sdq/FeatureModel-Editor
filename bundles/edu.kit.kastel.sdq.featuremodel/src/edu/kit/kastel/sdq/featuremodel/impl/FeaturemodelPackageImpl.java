@@ -11,6 +11,7 @@ import edu.kit.kastel.sdq.featuremodel.FeatureDiagram;
 import edu.kit.kastel.sdq.featuremodel.FeaturemodelFactory;
 import edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage;
 import edu.kit.kastel.sdq.featuremodel.MandatoryRelation;
+import edu.kit.kastel.sdq.featuremodel.Metamodel;
 import edu.kit.kastel.sdq.featuremodel.MultipleChildrenRelation;
 import edu.kit.kastel.sdq.featuremodel.NamedElement;
 import edu.kit.kastel.sdq.featuremodel.OptionalRelation;
@@ -122,6 +123,13 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 	 * @generated
 	 */
 	private EClass namedElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass metamodelEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -245,6 +253,16 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 	@Override
 	public EClass getFeature() {
 		return featureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFeature_Metamodel() {
+		return (EReference) featureEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -423,6 +441,26 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 	 * @generated
 	 */
 	@Override
+	public EClass getMetamodel() {
+		return metamodelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getMetamodel_Name() {
+		return (EAttribute) metamodelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public FeaturemodelFactory getFeaturemodelFactory() {
 		return (FeaturemodelFactory) getEFactoryInstance();
 	}
@@ -454,6 +492,7 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 		createEReference(featureDiagramEClass, FEATURE_DIAGRAM__CHILD_RELATIONS);
 
 		featureEClass = createEClass(FEATURE);
+		createEReference(featureEClass, FEATURE__METAMODEL);
 
 		constraintEClass = createEClass(CONSTRAINT);
 		createEReference(constraintEClass, CONSTRAINT__SOURCE);
@@ -482,6 +521,9 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
+
+		metamodelEClass = createEClass(METAMODEL);
+		createEAttribute(metamodelEClass, METAMODEL__NAME);
 	}
 
 	/**
@@ -541,6 +583,9 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeature_Metamodel(), this.getMetamodel(), null, "metamodel", null, 0, 1, Feature.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -590,6 +635,11 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(metamodelEClass, Metamodel.class, "Metamodel", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMetamodel_Name(), ecorePackage.getEString(), "name", null, 1, 1, Metamodel.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
