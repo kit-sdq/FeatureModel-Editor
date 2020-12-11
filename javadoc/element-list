@@ -1,6 +1,8 @@
 edu.kit.kastel.sdq.featuremodel
 edu.kit.kastel.sdq.featuremodel.design
 edu.kit.kastel.sdq.featuremodel.impl
+edu.kit.kastel.sdq.featuremodel.newfmprojectfromecorewizard
+edu.kit.kastel.sdq.featuremodel.newfmprojectwizard
 edu.kit.kastel.sdq.featuremodel.presentation
 edu.kit.kastel.sdq.featuremodel.provider
 edu.kit.kastel.sdq.featuremodel.util
