@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link edu.kit.kastel.sdq.featuremodel.Constraint#getSource <em>Source</em>}</li>
  *   <li>{@link edu.kit.kastel.sdq.featuremodel.Constraint#getTarget <em>Target</em>}</li>
+ *   <li>{@link edu.kit.kastel.sdq.featuremodel.Constraint#getState <em>State</em>}</li>
  * </ul>
  *
  * @see edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage#getConstraint()
@@ -27,12 +28,12 @@ public interface Constraint extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(Feature)
+	 * @see #setSource(AbstractFeature)
 	 * @see edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage#getConstraint_Source()
 	 * @model required="true"
 	 * @generated
 	 */
-	Feature getSource();
+	AbstractFeature getSource();
 
 	/**
 	 * Sets the value of the '{@link edu.kit.kastel.sdq.featuremodel.Constraint#getSource <em>Source</em>}' reference.
@@ -42,19 +43,19 @@ public interface Constraint extends EObject {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(Feature value);
+	void setSource(AbstractFeature value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(Feature)
+	 * @see #setTarget(AbstractFeature)
 	 * @see edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage#getConstraint_Target()
 	 * @model required="true"
 	 * @generated
 	 */
-	Feature getTarget();
+	AbstractFeature getTarget();
 
 	/**
 	 * Sets the value of the '{@link edu.kit.kastel.sdq.featuremodel.Constraint#getTarget <em>Target</em>}' reference.
@@ -64,6 +65,32 @@ public interface Constraint extends EObject {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(Feature value);
+	void setTarget(AbstractFeature value);
+
+	/**
+	 * Returns the value of the '<em><b>State</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * The literals are from the enumeration {@link edu.kit.kastel.sdq.featuremodel.State}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State</em>' attribute.
+	 * @see edu.kit.kastel.sdq.featuremodel.State
+	 * @see #setState(State)
+	 * @see edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage#getConstraint_State()
+	 * @model default="" required="true"
+	 * @generated
+	 */
+	State getState();
+
+	/**
+	 * Sets the value of the '{@link edu.kit.kastel.sdq.featuremodel.Constraint#getState <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>State</em>' attribute.
+	 * @see edu.kit.kastel.sdq.featuremodel.State
+	 * @see #getState()
+	 * @generated
+	 */
+	void setState(State value);
 
 } // Constraint

@@ -5,23 +5,43 @@
       <metamodel href="http://www.example.org/featuremodel#/"/>
       <layout xsi:type="description_1:CompositeLayout"/>
       <defaultLayer name="Default">
-        <edgeMappings name="Mandatory" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="aql:self.child" sourceFinderExpression="aql:self.parent" domainClass="featuremodel::MandatoryRelation" useDomainElement="true">
-          <style targetArrow="OutputFillClosedArrow">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
+        <edgeMappings name="Mandatory" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='RootFeature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="aql:self.child" sourceFinderExpression="aql:self.parent" domainClass="featuremodel::MandatoryRelation" useDomainElement="true">
+          <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::IN">
+            <style targetArrow="OutputFillClosedArrow">
+              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <centerLabelStyleDescription>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </centerLabelStyleDescription>
+            </style>
+          </conditionnalStyles>
+          <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::OUT">
+            <style targetArrow="OutputFillClosedArrow">
+              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              <centerLabelStyleDescription>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              </centerLabelStyleDescription>
+            </style>
+          </conditionnalStyles>
         </edgeMappings>
-        <edgeMappings name="Optional" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="aql:self.child" sourceFinderExpression="aql:self.parent" domainClass="featuremodel::OptionalRelation" useDomainElement="true">
-          <style targetArrow="OutputClosedArrow">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
+        <edgeMappings name="Optional" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='RootFeature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="aql:self.child" sourceFinderExpression="aql:self.parent" domainClass="featuremodel::OptionalRelation" useDomainElement="true">
+          <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::IN">
+            <style targetArrow="OutputClosedArrow">
+              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <centerLabelStyleDescription>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </centerLabelStyleDescription>
+            </style>
+          </conditionnalStyles>
+          <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::OUT">
+            <style targetArrow="OutputClosedArrow">
+              <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              <centerLabelStyleDescription>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              </centerLabelStyleDescription>
+            </style>
+          </conditionnalStyles>
         </edgeMappings>
-        <edgeMappings name="Multiple Children Relation" deletionDescription="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Delete%20multiple%20children%20relation']" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Or%20Docking%20site'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Alternative%20Docking%20site']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="aql:self.children">
+        <edgeMappings name="Multiple Children Relation State IN" deletionDescription="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Delete%20multiple%20children%20relation']" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Or%20Docking%20site'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Alternative%20Docking%20site'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='RootFeature']/@borderedNodeMappings[name='Alternative%20Docking%20site%20Root'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='RootFeature']/@borderedNodeMappings[name='Or%20Docking%20site%20Root']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="aql:self.children -> select(f | f.state == featuremodel::State::IN)">
           <style targetArrow="NoDecoration">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription>
@@ -29,7 +49,15 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="Requires Constraint" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="featuremodel::RequiresConstraint" useDomainElement="true">
+        <edgeMappings name="Multiple Children Relation State OUT" deletionDescription="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@toolSections.2/@ownedTools[name='Delete%20multiple%20children%20relation']" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Or%20Docking%20site'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Alternative%20Docking%20site'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='RootFeature']/@borderedNodeMappings[name='Alternative%20Docking%20site%20Root'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='RootFeature']/@borderedNodeMappings[name='Or%20Docking%20site%20Root']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="aql:self.children -> select(f | f.state == featuremodel::State::OUT)">
+          <style targetArrow="NoDecoration">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="Requires Constraint" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='RootFeature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="featuremodel::RequiresConstraint" useDomainElement="true">
           <style>
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;requires>>">
@@ -37,7 +65,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="Excludes Constraint" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="featuremodel::ExcludesConstraint" useDomainElement="true">
+        <edgeMappings name="Excludes Constraint" sourceMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='RootFeature']" targetMapping="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="featuremodel::ExcludesConstraint" useDomainElement="true">
           <style sourceArrow="InputArrow">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="&lt;&lt;excludes>>">
@@ -45,43 +73,139 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="Feature" deletionDescription="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Delete%20Feature']" semanticCandidatesExpression="feature:features" domainClass="featuremodel::Feature">
+        <containerMappings name="Feature" deletionDescription="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Delete%20Feature']" semanticCandidatesExpression="feature:features" domainClass="featuremodel::Feature" childrenPresentation="VerticalStack">
           <borderedNodeMappings name="Or Docking site" semanticCandidatesExpression="aql:self.eContainer().childRelations->select(r | r.oclIsTypeOf(featuremodel::OrRelation) and r.oclAsType(featuremodel::OrRelation).parent == self)" domainClass="featuremodel::OrRelation">
-            <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </style>
+            <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::IN">
+              <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::OUT">
+              <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              </style>
+            </conditionnalStyles>
           </borderedNodeMappings>
           <borderedNodeMappings name="Alternative Docking site" semanticCandidatesExpression="aql:self.eContainer().childRelations->select(r | r.oclIsTypeOf(featuremodel::AlternativeRelation) and r.oclAsType(featuremodel::AlternativeRelation).parent == self)" domainClass="featuremodel::AlternativeRelation">
-            <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            </style>
+            <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::IN">
+              <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::OUT">
+              <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              </style>
+            </conditionnalStyles>
           </borderedNodeMappings>
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false">
-            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-          </style>
-          <conditionnalStyles predicateExpression="aql:self == self.eContainer().rootFeature">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" borderLineStyle="dash" showIcon="false">
+          <subContainerMappings name="Metamodel" semanticCandidatesExpression="feature:metamodel" doubleClickDescription="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@toolSections.4/@ownedTools[name='Open%20Representation%20FM']" domainClass="featuremodel::Metamodel" childrenPresentation="VerticalStack">
+            <conditionnalStyles predicateExpression="aql:self.eContainer().state == featuremodel::State::IN">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql:self.eContainer().state == featuremodel::State::OUT">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              </style>
+            </conditionnalStyles>
+          </subContainerMappings>
+          <subContainerMappings name="Simulator Component" semanticCandidatesExpression="feature:simulatorcomponent" domainClass="featuremodel::SimulatorComponent" childrenPresentation="VerticalStack">
+            <conditionnalStyles predicateExpression="aql:self.eContainer().state == featuremodel::State::IN">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="feature:path">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql:self.eContainer().state == featuremodel::State::OUT">
+              <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="feature:path">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              </style>
+            </conditionnalStyles>
+          </subContainerMappings>
+          <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::IN">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
             </style>
           </conditionnalStyles>
+          <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::OUT">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            </style>
+          </conditionnalStyles>
+        </containerMappings>
+        <containerMappings name="RootFeature" deletionDescription="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='Delete%20Feature']" semanticCandidatesExpression="feature:rootFeature" domainClass="featuremodel::RootFeature" childrenPresentation="VerticalStack">
+          <borderedNodeMappings name="Or Docking site Root" semanticCandidatesExpression="aql:self.eContainer().childRelations->select(r | r.oclIsTypeOf(featuremodel::OrRelation) and r.oclAsType(featuremodel::OrRelation).parent == self)" domainClass="featuremodel::OrRelation">
+            <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::IN">
+              <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::OUT">
+              <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              </style>
+            </conditionnalStyles>
+          </borderedNodeMappings>
+          <borderedNodeMappings name="Alternative Docking site Root" semanticCandidatesExpression="aql:self.eContainer().childRelations->select(r | r.oclIsTypeOf(featuremodel::AlternativeRelation) and r.oclAsType(featuremodel::AlternativeRelation).parent == self)" domainClass="featuremodel::AlternativeRelation">
+            <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::IN">
+              <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              </style>
+            </conditionnalStyles>
+            <conditionnalStyles predicateExpression="aql:self.state == featuremodel::State::OUT">
+              <style xsi:type="style:LozengeNodeDescription" showIcon="false" labelExpression="" sizeComputationExpression="1" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              </style>
+            </conditionnalStyles>
+          </borderedNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" borderLineStyle="dash" showIcon="false">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </style>
         </containerMappings>
         <toolSections name="Features">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Create root feature" precondition="aql:container.rootFeature == null" containerMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Create root feature" precondition="aql:container.rootFeature == null" containerMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='RootFeature']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
-                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::Feature" referenceName="features">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="featuremodel::RootFeature" referenceName="rootFeature">
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="Root Feature"/>
                   <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
                     <subModelOperations xsi:type="tool_1:SetValue" featureName="rootFeature" valueExpression="var:instance"/>
@@ -163,7 +287,7 @@
             </initialOperation>
           </ownedTools>
           <ownedTools xsi:type="tool:ToolGroup" name="Add child feature">
-            <tools xsi:type="tool_1:ToolDescription" name="Add mandatory child feature" precondition="aql:container.oclIsTypeOf(featuremodel::Feature)">
+            <tools xsi:type="tool_1:ToolDescription" name="Add mandatory child feature" precondition="aql:container.oclIsKindOf(featuremodel::AbstractFeature)">
               <element name="element"/>
               <elementView name="elementView"/>
               <initialOperation>
@@ -178,7 +302,7 @@
                 </firstModelOperations>
               </initialOperation>
             </tools>
-            <tools xsi:type="tool_1:ToolDescription" name="Add optional child feature" precondition="aql:container.oclIsTypeOf(featuremodel::Feature)">
+            <tools xsi:type="tool_1:ToolDescription" name="Add optional child feature" precondition="aql:container.oclIsKindOf(featuremodel::AbstractFeature)">
               <element name="element"/>
               <elementView name="elementView"/>
               <initialOperation>
@@ -196,7 +320,7 @@
           </ownedTools>
         </toolSections>
         <toolSections name="Multiple Child Relations">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Or Relation" nodeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Or%20Docking%20site']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Or Relation" nodeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Or%20Docking%20site'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='RootFeature']/@borderedNodeMappings[name='Or%20Docking%20site%20Root']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -207,7 +331,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Alternative Relation" nodeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Alternative%20Docking%20site']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Alternative Relation" nodeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@borderedNodeMappings[name='Alternative%20Docking%20site'] //@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='RootFeature']/@borderedNodeMappings[name='Alternative%20Docking%20site%20Root']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
@@ -218,7 +342,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Add Child" precondition="aql:preTarget.featuresHaveSharedAncestor(preSource.parent) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Multiple%20Children%20Relation']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Add Child" precondition="aql:preTarget.featuresHaveSharedAncestor(preSource.parent) == false" edgeMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@edgeMappings[name='Multiple%20Children%20Relation%20State%20IN']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -264,6 +388,55 @@
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:source"/>
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
                 </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Others">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Load Metamodel" precondition="aql:container.metamodel == null" containerMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@subContainerMappings[name='Metamodel']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="Load Metamodel FM Action" id="LoadMetamodelFM"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="Load Simulator Component" precondition="aql:container.simulatorcomponent == null" containerMappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@subContainerMappings[name='Simulator%20Component']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="Load SimulatorComponent FM Action" id="LoadSimulatorComponentFM"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DoubleClickDescription" name="Open Representation FM" mappings="//@ownedViewpoints[name='featuremodel.viewpoint']/@ownedRepresentations[name='featuremodel.diagram']/@defaultLayer/@containerMappings[name='Feature']/@subContainerMappings[name='Metamodel']">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="Open Representation FM Action" id="OpenRepresentationFM">
+                  <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="Open Representation FM Action" id="OpenRepresentationFM">
+                    <parameters name="element" value="var:element"/>
+                    <parameters name="RepresentationDescription" value="Entities"/>
+                    <parameters name="Diagram name" value="aql:element.name + ' diagram'"/>
+                    <parameters name="Viewpoint" value="Design"/>
+                  </subModelOperations>
+                  <parameters name="element" value="var:element"/>
+                  <parameters name="RepresentationDescription" value="Entities"/>
+                  <parameters name="Diagram name" value="aql:element.name + ' diagram'"/>
+                  <parameters name="Viewpoint" value="Design"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ToolDescription" name="Change Visibility">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="Change Visibility FM Action" id="ChangeVisibilityFM">
+                <parameters name="element" value="var:element"/>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>

@@ -4,6 +4,7 @@ package edu.kit.kastel.sdq.featuremodel;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -121,7 +122,7 @@ public interface FeaturemodelPackage extends EPackage {
 	int FEATURE_DIAGRAM__FEATURES = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Root Feature</b></em>' reference.
+	 * The feature id for the '<em><b>Root Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -148,14 +149,14 @@ public interface FeaturemodelPackage extends EPackage {
 	int FEATURE_DIAGRAM_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link edu.kit.kastel.sdq.featuremodel.impl.FeatureImpl <em>Feature</em>}' class.
+	 * The meta object id for the '{@link edu.kit.kastel.sdq.featuremodel.impl.AbstractFeatureImpl <em>Abstract Feature</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see edu.kit.kastel.sdq.featuremodel.impl.FeatureImpl
-	 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getFeature()
+	 * @see edu.kit.kastel.sdq.featuremodel.impl.AbstractFeatureImpl
+	 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getAbstractFeature()
 	 * @generated
 	 */
-	int FEATURE = 1;
+	int ABSTRACT_FEATURE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -164,25 +165,26 @@ public interface FeaturemodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__NAME = NAMED_ELEMENT__NAME;
+	int ABSTRACT_FEATURE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Metamodel</b></em>' containment reference.
+	 * The number of structural features of the '<em>Abstract Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__METAMODEL = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int ABSTRACT_FEATURE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Feature</em>' class.
+	 * The meta object id for the '{@link edu.kit.kastel.sdq.featuremodel.impl.FeatureImpl <em>Feature</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see edu.kit.kastel.sdq.featuremodel.impl.FeatureImpl
+	 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getFeature()
 	 * @generated
-	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int FEATURE = 15;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.kastel.sdq.featuremodel.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -213,13 +215,22 @@ public interface FeaturemodelPackage extends EPackage {
 	int CONSTRAINT__TARGET = 1;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__STATE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_FEATURE_COUNT = 2;
+	int CONSTRAINT_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.kastel.sdq.featuremodel.impl.ChildRelationImpl <em>Child Relation</em>}' class.
@@ -241,13 +252,22 @@ public interface FeaturemodelPackage extends EPackage {
 	int CHILD_RELATION__PARENT = 0;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHILD_RELATION__STATE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Child Relation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHILD_RELATION_FEATURE_COUNT = 1;
+	int CHILD_RELATION_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link edu.kit.kastel.sdq.featuremodel.impl.SingleChildRelationImpl <em>Single Child Relation</em>}' class.
@@ -267,6 +287,15 @@ public interface FeaturemodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SINGLE_CHILD_RELATION__PARENT = CHILD_RELATION__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_CHILD_RELATION__STATE = CHILD_RELATION__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Child</b></em>' reference.
@@ -304,6 +333,15 @@ public interface FeaturemodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLE_CHILDREN_RELATION__PARENT = CHILD_RELATION__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_CHILDREN_RELATION__STATE = CHILD_RELATION__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
@@ -352,6 +390,15 @@ public interface FeaturemodelPackage extends EPackage {
 	int REQUIRES_CONSTRAINT__TARGET = CONSTRAINT__TARGET;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIRES_CONSTRAINT__STATE = CONSTRAINT__STATE;
+
+	/**
 	 * The number of structural features of the '<em>Requires Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -389,6 +436,15 @@ public interface FeaturemodelPackage extends EPackage {
 	int EXCLUDES_CONSTRAINT__TARGET = CONSTRAINT__TARGET;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDES_CONSTRAINT__STATE = CONSTRAINT__STATE;
+
+	/**
 	 * The number of structural features of the '<em>Excludes Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -415,6 +471,15 @@ public interface FeaturemodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int MANDATORY_RELATION__PARENT = SINGLE_CHILD_RELATION__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANDATORY_RELATION__STATE = SINGLE_CHILD_RELATION__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Child</b></em>' reference.
@@ -454,6 +519,15 @@ public interface FeaturemodelPackage extends EPackage {
 	int OPTIONAL_RELATION__PARENT = SINGLE_CHILD_RELATION__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTIONAL_RELATION__STATE = SINGLE_CHILD_RELATION__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Child</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -489,6 +563,15 @@ public interface FeaturemodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int OR_RELATION__PARENT = MULTIPLE_CHILDREN_RELATION__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR_RELATION__STATE = MULTIPLE_CHILDREN_RELATION__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
@@ -528,6 +611,15 @@ public interface FeaturemodelPackage extends EPackage {
 	int ALTERNATIVE_RELATION__PARENT = MULTIPLE_CHILDREN_RELATION__PARENT;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALTERNATIVE_RELATION__STATE = MULTIPLE_CHILDREN_RELATION__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Children</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -565,13 +657,133 @@ public interface FeaturemodelPackage extends EPackage {
 	int METAMODEL__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Main Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL__MAIN_PACKAGE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Metamodel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_FEATURE_COUNT = 1;
+	int METAMODEL_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link edu.kit.kastel.sdq.featuremodel.impl.RootFeatureImpl <em>Root Feature</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.kit.kastel.sdq.featuremodel.impl.RootFeatureImpl
+	 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getRootFeature()
+	 * @generated
+	 */
+	int ROOT_FEATURE = 14;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT_FEATURE__NAME = ABSTRACT_FEATURE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Root Feature</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT_FEATURE_FEATURE_COUNT = ABSTRACT_FEATURE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__NAME = ABSTRACT_FEATURE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Metamodel</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__METAMODEL = ABSTRACT_FEATURE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Simulatorcomponent</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__SIMULATORCOMPONENT = ABSTRACT_FEATURE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__STATE = ABSTRACT_FEATURE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Feature</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_FEATURE_COUNT = ABSTRACT_FEATURE_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link edu.kit.kastel.sdq.featuremodel.impl.SimulatorComponentImpl <em>Simulator Component</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.kit.kastel.sdq.featuremodel.impl.SimulatorComponentImpl
+	 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getSimulatorComponent()
+	 * @generated
+	 */
+	int SIMULATOR_COMPONENT = 16;
+
+	/**
+	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMULATOR_COMPONENT__PATH = 0;
+
+	/**
+	 * The number of structural features of the '<em>Simulator Component</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMULATOR_COMPONENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link edu.kit.kastel.sdq.featuremodel.State <em>State</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see edu.kit.kastel.sdq.featuremodel.State
+	 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getState()
+	 * @generated
+	 */
+	int STATE = 17;
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.featuremodel.FeatureDiagram <em>Feature Diagram</em>}'.
@@ -606,10 +818,10 @@ public interface FeaturemodelPackage extends EPackage {
 	EReference getFeatureDiagram_Features();
 
 	/**
-	 * Returns the meta object for the reference '{@link edu.kit.kastel.sdq.featuremodel.FeatureDiagram#getRootFeature <em>Root Feature</em>}'.
+	 * Returns the meta object for the containment reference '{@link edu.kit.kastel.sdq.featuremodel.FeatureDiagram#getRootFeature <em>Root Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Root Feature</em>'.
+	 * @return the meta object for the containment reference '<em>Root Feature</em>'.
 	 * @see edu.kit.kastel.sdq.featuremodel.FeatureDiagram#getRootFeature()
 	 * @see #getFeatureDiagram()
 	 * @generated
@@ -626,6 +838,16 @@ public interface FeaturemodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFeatureDiagram_ChildRelations();
+
+	/**
+	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.featuremodel.AbstractFeature <em>Abstract Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Abstract Feature</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.AbstractFeature
+	 * @generated
+	 */
+	EClass getAbstractFeature();
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.featuremodel.Feature <em>Feature</em>}'.
@@ -647,6 +869,59 @@ public interface FeaturemodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFeature_Metamodel();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link edu.kit.kastel.sdq.featuremodel.Feature#getSimulatorcomponent <em>Simulatorcomponent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Simulatorcomponent</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.Feature#getSimulatorcomponent()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EReference getFeature_Simulatorcomponent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.kit.kastel.sdq.featuremodel.Feature#getState <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>State</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.Feature#getState()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EAttribute getFeature_State();
+
+	/**
+	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.featuremodel.SimulatorComponent <em>Simulator Component</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Simulator Component</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.SimulatorComponent
+	 * @generated
+	 */
+	EClass getSimulatorComponent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.kit.kastel.sdq.featuremodel.SimulatorComponent#getPath <em>Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Path</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.SimulatorComponent#getPath()
+	 * @see #getSimulatorComponent()
+	 * @generated
+	 */
+	EAttribute getSimulatorComponent_Path();
+
+	/**
+	 * Returns the meta object for enum '{@link edu.kit.kastel.sdq.featuremodel.State <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>State</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.State
+	 * @generated
+	 */
+	EEnum getState();
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.featuremodel.Constraint <em>Constraint</em>}'.
@@ -681,6 +956,17 @@ public interface FeaturemodelPackage extends EPackage {
 	EReference getConstraint_Target();
 
 	/**
+	 * Returns the meta object for the attribute '{@link edu.kit.kastel.sdq.featuremodel.Constraint#getState <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>State</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.Constraint#getState()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EAttribute getConstraint_State();
+
+	/**
 	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.featuremodel.ChildRelation <em>Child Relation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -700,6 +986,17 @@ public interface FeaturemodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getChildRelation_Parent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link edu.kit.kastel.sdq.featuremodel.ChildRelation#getState <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>State</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.ChildRelation#getState()
+	 * @see #getChildRelation()
+	 * @generated
+	 */
+	EAttribute getChildRelation_State();
 
 	/**
 	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.featuremodel.SingleChildRelation <em>Single Child Relation</em>}'.
@@ -846,6 +1143,27 @@ public interface FeaturemodelPackage extends EPackage {
 	EAttribute getMetamodel_Name();
 
 	/**
+	 * Returns the meta object for the reference '{@link edu.kit.kastel.sdq.featuremodel.Metamodel#getMainPackage <em>Main Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Main Package</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.Metamodel#getMainPackage()
+	 * @see #getMetamodel()
+	 * @generated
+	 */
+	EReference getMetamodel_MainPackage();
+
+	/**
+	 * Returns the meta object for class '{@link edu.kit.kastel.sdq.featuremodel.RootFeature <em>Root Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Root Feature</em>'.
+	 * @see edu.kit.kastel.sdq.featuremodel.RootFeature
+	 * @generated
+	 */
+	EClass getRootFeature();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -894,7 +1212,7 @@ public interface FeaturemodelPackage extends EPackage {
 		EReference FEATURE_DIAGRAM__FEATURES = eINSTANCE.getFeatureDiagram_Features();
 
 		/**
-		 * The meta object literal for the '<em><b>Root Feature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Root Feature</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -908,6 +1226,16 @@ public interface FeaturemodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FEATURE_DIAGRAM__CHILD_RELATIONS = eINSTANCE.getFeatureDiagram_ChildRelations();
+
+		/**
+		 * The meta object literal for the '{@link edu.kit.kastel.sdq.featuremodel.impl.AbstractFeatureImpl <em>Abstract Feature</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.kit.kastel.sdq.featuremodel.impl.AbstractFeatureImpl
+		 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getAbstractFeature()
+		 * @generated
+		 */
+		EClass ABSTRACT_FEATURE = eINSTANCE.getAbstractFeature();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.kastel.sdq.featuremodel.impl.FeatureImpl <em>Feature</em>}' class.
@@ -926,6 +1254,50 @@ public interface FeaturemodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FEATURE__METAMODEL = eINSTANCE.getFeature_Metamodel();
+
+		/**
+		 * The meta object literal for the '<em><b>Simulatorcomponent</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE__SIMULATORCOMPONENT = eINSTANCE.getFeature_Simulatorcomponent();
+
+		/**
+		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE__STATE = eINSTANCE.getFeature_State();
+
+		/**
+		 * The meta object literal for the '{@link edu.kit.kastel.sdq.featuremodel.impl.SimulatorComponentImpl <em>Simulator Component</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.kit.kastel.sdq.featuremodel.impl.SimulatorComponentImpl
+		 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getSimulatorComponent()
+		 * @generated
+		 */
+		EClass SIMULATOR_COMPONENT = eINSTANCE.getSimulatorComponent();
+
+		/**
+		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMULATOR_COMPONENT__PATH = eINSTANCE.getSimulatorComponent_Path();
+
+		/**
+		 * The meta object literal for the '{@link edu.kit.kastel.sdq.featuremodel.State <em>State</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.kit.kastel.sdq.featuremodel.State
+		 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getState()
+		 * @generated
+		 */
+		EEnum STATE = eINSTANCE.getState();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.kastel.sdq.featuremodel.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -954,6 +1326,14 @@ public interface FeaturemodelPackage extends EPackage {
 		EReference CONSTRAINT__TARGET = eINSTANCE.getConstraint_Target();
 
 		/**
+		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__STATE = eINSTANCE.getConstraint_State();
+
+		/**
 		 * The meta object literal for the '{@link edu.kit.kastel.sdq.featuremodel.impl.ChildRelationImpl <em>Child Relation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -970,6 +1350,14 @@ public interface FeaturemodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CHILD_RELATION__PARENT = eINSTANCE.getChildRelation_Parent();
+
+		/**
+		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHILD_RELATION__STATE = eINSTANCE.getChildRelation_State();
 
 		/**
 		 * The meta object literal for the '{@link edu.kit.kastel.sdq.featuremodel.impl.SingleChildRelationImpl <em>Single Child Relation</em>}' class.
@@ -1102,6 +1490,24 @@ public interface FeaturemodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute METAMODEL__NAME = eINSTANCE.getMetamodel_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Main Package</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METAMODEL__MAIN_PACKAGE = eINSTANCE.getMetamodel_MainPackage();
+
+		/**
+		 * The meta object literal for the '{@link edu.kit.kastel.sdq.featuremodel.impl.RootFeatureImpl <em>Root Feature</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see edu.kit.kastel.sdq.featuremodel.impl.RootFeatureImpl
+		 * @see edu.kit.kastel.sdq.featuremodel.impl.FeaturemodelPackageImpl#getRootFeature()
+		 * @generated
+		 */
+		EClass ROOT_FEATURE = eINSTANCE.getRootFeature();
 
 	}
 

@@ -2,6 +2,8 @@
  */
 package edu.kit.kastel.sdq.featuremodel.provider;
 
+import edu.kit.kastel.sdq.featuremodel.MandatoryRelation;
+import edu.kit.kastel.sdq.featuremodel.State;
 import java.util.Collection;
 import java.util.List;
 
@@ -71,7 +73,10 @@ public class MandatoryRelationItemProvider extends SingleChildRelationItemProvid
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_MandatoryRelation_type");
+		State labelValue = ((MandatoryRelation) object).getState();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ? getString("_UI_MandatoryRelation_type")
+				: getString("_UI_MandatoryRelation_type") + " " + label;
 	}
 
 	/**

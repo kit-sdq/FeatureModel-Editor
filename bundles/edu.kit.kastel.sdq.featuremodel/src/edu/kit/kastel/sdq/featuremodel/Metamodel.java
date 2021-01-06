@@ -3,6 +3,7 @@
 package edu.kit.kastel.sdq.featuremodel;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link edu.kit.kastel.sdq.featuremodel.Metamodel#getName <em>Name</em>}</li>
+ *   <li>{@link edu.kit.kastel.sdq.featuremodel.Metamodel#getMainPackage <em>Main Package</em>}</li>
  * </ul>
  *
  * @see edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage#getMetamodel()
@@ -42,5 +44,27 @@ public interface Metamodel extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Main Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Main Package</em>' reference.
+	 * @see #setMainPackage(EPackage)
+	 * @see edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage#getMetamodel_MainPackage()
+	 * @model required="true"
+	 * @generated
+	 */
+	EPackage getMainPackage();
+
+	/**
+	 * Sets the value of the '{@link edu.kit.kastel.sdq.featuremodel.Metamodel#getMainPackage <em>Main Package</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Main Package</em>' reference.
+	 * @see #getMainPackage()
+	 * @generated
+	 */
+	void setMainPackage(EPackage value);
 
 } // Metamodel

@@ -72,8 +72,8 @@ public class FeaturemodelAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseFeature(Feature object) {
-			return createFeatureAdapter();
+		public Adapter caseAbstractFeature(AbstractFeature object) {
+			return createAbstractFeatureAdapter();
 		}
 
 		@Override
@@ -137,6 +137,21 @@ public class FeaturemodelAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseRootFeature(RootFeature object) {
+			return createRootFeatureAdapter();
+		}
+
+		@Override
+		public Adapter caseFeature(Feature object) {
+			return createFeatureAdapter();
+		}
+
+		@Override
+		public Adapter caseSimulatorComponent(SimulatorComponent object) {
+			return createSimulatorComponentAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -170,6 +185,20 @@ public class FeaturemodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link edu.kit.kastel.sdq.featuremodel.AbstractFeature <em>Abstract Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.kit.kastel.sdq.featuremodel.AbstractFeature
+	 * @generated
+	 */
+	public Adapter createAbstractFeatureAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link edu.kit.kastel.sdq.featuremodel.Feature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -180,6 +209,20 @@ public class FeaturemodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFeatureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.kit.kastel.sdq.featuremodel.SimulatorComponent <em>Simulator Component</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.kit.kastel.sdq.featuremodel.SimulatorComponent
+	 * @generated
+	 */
+	public Adapter createSimulatorComponentAdapter() {
 		return null;
 	}
 
@@ -348,6 +391,20 @@ public class FeaturemodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMetamodelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link edu.kit.kastel.sdq.featuremodel.RootFeature <em>Root Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see edu.kit.kastel.sdq.featuremodel.RootFeature
+	 * @generated
+	 */
+	public Adapter createRootFeatureAdapter() {
 		return null;
 	}
 

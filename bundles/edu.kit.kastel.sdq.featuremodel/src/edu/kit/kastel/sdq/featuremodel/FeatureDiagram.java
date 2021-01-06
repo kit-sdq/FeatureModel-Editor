@@ -43,32 +43,32 @@ public interface FeatureDiagram extends NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Features</em>' containment reference list.
 	 * @see edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage#getFeatureDiagram_Features()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Feature> getFeatures();
 
 	/**
-	 * Returns the value of the '<em><b>Root Feature</b></em>' reference.
+	 * Returns the value of the '<em><b>Root Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Root Feature</em>' reference.
-	 * @see #setRootFeature(Feature)
+	 * @return the value of the '<em>Root Feature</em>' containment reference.
+	 * @see #setRootFeature(RootFeature)
 	 * @see edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage#getFeatureDiagram_RootFeature()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	Feature getRootFeature();
+	RootFeature getRootFeature();
 
 	/**
-	 * Sets the value of the '{@link edu.kit.kastel.sdq.featuremodel.FeatureDiagram#getRootFeature <em>Root Feature</em>}' reference.
+	 * Sets the value of the '{@link edu.kit.kastel.sdq.featuremodel.FeatureDiagram#getRootFeature <em>Root Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Root Feature</em>' reference.
+	 * @param value the new value of the '<em>Root Feature</em>' containment reference.
 	 * @see #getRootFeature()
 	 * @generated
 	 */
-	void setRootFeature(Feature value);
+	void setRootFeature(RootFeature value);
 
 	/**
 	 * Returns the value of the '<em><b>Child Relations</b></em>' containment reference list.

@@ -2,6 +2,8 @@
  */
 package edu.kit.kastel.sdq.featuremodel.provider;
 
+import edu.kit.kastel.sdq.featuremodel.AlternativeRelation;
+import edu.kit.kastel.sdq.featuremodel.State;
 import java.util.Collection;
 import java.util.List;
 
@@ -71,7 +73,10 @@ public class AlternativeRelationItemProvider extends MultipleChildrenRelationIte
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_AlternativeRelation_type");
+		State labelValue = ((AlternativeRelation) object).getState();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ? getString("_UI_AlternativeRelation_type")
+				: getString("_UI_AlternativeRelation_type") + " " + label;
 	}
 
 	/**

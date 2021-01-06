@@ -8,6 +8,7 @@ import edu.kit.kastel.sdq.featuremodel.Feature;
 import edu.kit.kastel.sdq.featuremodel.FeatureDiagram;
 import edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage;
 
+import edu.kit.kastel.sdq.featuremodel.RootFeature;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -61,14 +62,14 @@ public class FeatureDiagramImpl extends NamedElementImpl implements FeatureDiagr
 	protected EList<Feature> features;
 
 	/**
-	 * The cached value of the '{@link #getRootFeature() <em>Root Feature</em>}' reference.
+	 * The cached value of the '{@link #getRootFeature() <em>Root Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRootFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected Feature rootFeature;
+	protected RootFeature rootFeature;
 
 	/**
 	 * The cached value of the '{@link #getChildRelations() <em>Child Relations</em>}' containment reference list.
@@ -133,16 +134,7 @@ public class FeatureDiagramImpl extends NamedElementImpl implements FeatureDiagr
 	 * @generated
 	 */
 	@Override
-	public Feature getRootFeature() {
-		if (rootFeature != null && rootFeature.eIsProxy()) {
-			InternalEObject oldRootFeature = (InternalEObject) rootFeature;
-			rootFeature = (Feature) eResolveProxy(oldRootFeature);
-			if (rootFeature != oldRootFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							FeaturemodelPackage.FEATURE_DIAGRAM__ROOT_FEATURE, oldRootFeature, rootFeature));
-			}
-		}
+	public RootFeature getRootFeature() {
 		return rootFeature;
 	}
 
@@ -151,8 +143,18 @@ public class FeatureDiagramImpl extends NamedElementImpl implements FeatureDiagr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature basicGetRootFeature() {
-		return rootFeature;
+	public NotificationChain basicSetRootFeature(RootFeature newRootFeature, NotificationChain msgs) {
+		RootFeature oldRootFeature = rootFeature;
+		rootFeature = newRootFeature;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					FeaturemodelPackage.FEATURE_DIAGRAM__ROOT_FEATURE, oldRootFeature, newRootFeature);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -161,12 +163,21 @@ public class FeatureDiagramImpl extends NamedElementImpl implements FeatureDiagr
 	 * @generated
 	 */
 	@Override
-	public void setRootFeature(Feature newRootFeature) {
-		Feature oldRootFeature = rootFeature;
-		rootFeature = newRootFeature;
-		if (eNotificationRequired())
+	public void setRootFeature(RootFeature newRootFeature) {
+		if (newRootFeature != rootFeature) {
+			NotificationChain msgs = null;
+			if (rootFeature != null)
+				msgs = ((InternalEObject) rootFeature).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - FeaturemodelPackage.FEATURE_DIAGRAM__ROOT_FEATURE, null, msgs);
+			if (newRootFeature != null)
+				msgs = ((InternalEObject) newRootFeature).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - FeaturemodelPackage.FEATURE_DIAGRAM__ROOT_FEATURE, null, msgs);
+			msgs = basicSetRootFeature(newRootFeature, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FeaturemodelPackage.FEATURE_DIAGRAM__ROOT_FEATURE,
-					oldRootFeature, rootFeature));
+					newRootFeature, newRootFeature));
 	}
 
 	/**
@@ -195,6 +206,8 @@ public class FeatureDiagramImpl extends NamedElementImpl implements FeatureDiagr
 			return ((InternalEList<?>) getConstraints()).basicRemove(otherEnd, msgs);
 		case FeaturemodelPackage.FEATURE_DIAGRAM__FEATURES:
 			return ((InternalEList<?>) getFeatures()).basicRemove(otherEnd, msgs);
+		case FeaturemodelPackage.FEATURE_DIAGRAM__ROOT_FEATURE:
+			return basicSetRootFeature(null, msgs);
 		case FeaturemodelPackage.FEATURE_DIAGRAM__CHILD_RELATIONS:
 			return ((InternalEList<?>) getChildRelations()).basicRemove(otherEnd, msgs);
 		}
@@ -214,9 +227,7 @@ public class FeatureDiagramImpl extends NamedElementImpl implements FeatureDiagr
 		case FeaturemodelPackage.FEATURE_DIAGRAM__FEATURES:
 			return getFeatures();
 		case FeaturemodelPackage.FEATURE_DIAGRAM__ROOT_FEATURE:
-			if (resolve)
-				return getRootFeature();
-			return basicGetRootFeature();
+			return getRootFeature();
 		case FeaturemodelPackage.FEATURE_DIAGRAM__CHILD_RELATIONS:
 			return getChildRelations();
 		}
@@ -241,7 +252,7 @@ public class FeatureDiagramImpl extends NamedElementImpl implements FeatureDiagr
 			getFeatures().addAll((Collection<? extends Feature>) newValue);
 			return;
 		case FeaturemodelPackage.FEATURE_DIAGRAM__ROOT_FEATURE:
-			setRootFeature((Feature) newValue);
+			setRootFeature((RootFeature) newValue);
 			return;
 		case FeaturemodelPackage.FEATURE_DIAGRAM__CHILD_RELATIONS:
 			getChildRelations().clear();
@@ -266,7 +277,7 @@ public class FeatureDiagramImpl extends NamedElementImpl implements FeatureDiagr
 			getFeatures().clear();
 			return;
 		case FeaturemodelPackage.FEATURE_DIAGRAM__ROOT_FEATURE:
-			setRootFeature((Feature) null);
+			setRootFeature((RootFeature) null);
 			return;
 		case FeaturemodelPackage.FEATURE_DIAGRAM__CHILD_RELATIONS:
 			getChildRelations().clear();

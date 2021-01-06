@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link edu.kit.kastel.sdq.featuremodel.ChildRelation#getParent <em>Parent</em>}</li>
+ *   <li>{@link edu.kit.kastel.sdq.featuremodel.ChildRelation#getState <em>State</em>}</li>
  * </ul>
  *
  * @see edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage#getChildRelation()
@@ -26,12 +27,12 @@ public interface ChildRelation extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent</em>' reference.
-	 * @see #setParent(Feature)
+	 * @see #setParent(AbstractFeature)
 	 * @see edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage#getChildRelation_Parent()
 	 * @model required="true"
 	 * @generated
 	 */
-	Feature getParent();
+	AbstractFeature getParent();
 
 	/**
 	 * Sets the value of the '{@link edu.kit.kastel.sdq.featuremodel.ChildRelation#getParent <em>Parent</em>}' reference.
@@ -41,6 +42,32 @@ public interface ChildRelation extends EObject {
 	 * @see #getParent()
 	 * @generated
 	 */
-	void setParent(Feature value);
+	void setParent(AbstractFeature value);
+
+	/**
+	 * Returns the value of the '<em><b>State</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * The literals are from the enumeration {@link edu.kit.kastel.sdq.featuremodel.State}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State</em>' attribute.
+	 * @see edu.kit.kastel.sdq.featuremodel.State
+	 * @see #setState(State)
+	 * @see edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage#getChildRelation_State()
+	 * @model default="" required="true"
+	 * @generated
+	 */
+	State getState();
+
+	/**
+	 * Sets the value of the '{@link edu.kit.kastel.sdq.featuremodel.ChildRelation#getState <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>State</em>' attribute.
+	 * @see edu.kit.kastel.sdq.featuremodel.State
+	 * @see #getState()
+	 * @generated
+	 */
+	void setState(State value);
 
 } // ChildRelation

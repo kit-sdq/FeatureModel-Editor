@@ -10,21 +10,25 @@
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="Featuremodel" basePackage="edu.kit.kastel.sdq" disposableProviderFactory="true"
       ecorePackage="featuremodel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="featuremodel.ecore#//State">
+      <genEnumLiterals ecoreEnumLiteral="featuremodel.ecore#//State/IN"/>
+      <genEnumLiterals ecoreEnumLiteral="featuremodel.ecore#//State/OUT"/>
+    </genEnums>
     <genClasses ecoreClass="featuremodel.ecore#//FeatureDiagram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featuremodel.ecore#//FeatureDiagram/constraints"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featuremodel.ecore#//FeatureDiagram/features"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//FeatureDiagram/rootFeature"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//FeatureDiagram/rootFeature"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featuremodel.ecore#//FeatureDiagram/childRelations"/>
     </genClasses>
-    <genClasses ecoreClass="featuremodel.ecore#//Feature">
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//Feature/metamodel"/>
-    </genClasses>
+    <genClasses ecoreClass="featuremodel.ecore#//AbstractFeature"/>
     <genClasses image="false" ecoreClass="featuremodel.ecore#//Constraint">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//Constraint/source"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//Constraint/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featuremodel.ecore#//Constraint/state"/>
     </genClasses>
     <genClasses image="false" ecoreClass="featuremodel.ecore#//ChildRelation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//ChildRelation/parent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featuremodel.ecore#//ChildRelation/state"/>
     </genClasses>
     <genClasses image="false" ecoreClass="featuremodel.ecore#//SingleChildRelation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//SingleChildRelation/child"/>
@@ -43,6 +47,16 @@
     </genClasses>
     <genClasses ecoreClass="featuremodel.ecore#//Metamodel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featuremodel.ecore#//Metamodel/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//Metamodel/mainPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="featuremodel.ecore#//RootFeature"/>
+    <genClasses ecoreClass="featuremodel.ecore#//Feature">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference featuremodel.ecore#//Feature/metamodel"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference featuremodel.ecore#//Feature/simulatorcomponent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featuremodel.ecore#//Feature/state"/>
+    </genClasses>
+    <genClasses ecoreClass="featuremodel.ecore#//SimulatorComponent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute featuremodel.ecore#//SimulatorComponent/path"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="4.10"?>
+<plugin>
+   <extension
+         point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="edu.kit.kastel.sdq.featuremodel.custom.externaljavaactions.LoadMetamodelFM"
+            id="LoadMetamodelFM">
+      </javaActions>
+      <javaActions
+            actionClass="edu.kit.kastel.sdq.featuremodel.custom.externaljavaactions.OpenRepresentationFM"
+            id="OpenRepresentationFM">
+      </javaActions>
+      <javaActions
+            actionClass="edu.kit.kastel.sdq.featuremodel.custom.externaljavaactions.LoadSimulatorComponentFM"
+            id="LoadSimulatorComponentFM">
+      </javaActions>
+      <javaActions
+            actionClass="edu.kit.kastel.sdq.featuremodel.custom.externaljavaactions.ChangeVisibilityFM"
+            id="ChangeVisibilityFM">
+      </javaActions>
+   </extension>
+
+</plugin>

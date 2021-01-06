@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.ui,
  edu.kit.kastel.sdq.featuremodel.edit;bundle-version="1.0.0",
  edu.kit.kastel.sdq.featuremodel.editor;bundle-version="1.0.0",
  edu.kit.kastel.sdq.featuremodel.newFmProjectWizard;bundle-version="1.0.0",
- org.eclipse.emf.transaction
+ org.eclipse.emf.transaction,
+ edu.kit.kastel.sdq.featuremodel.custom
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: edu.kit.kastel.sdq.featuremodel.newFmProjectFromEcoreWizard
 Bundle-ActivationPolicy: lazy

@@ -5,6 +5,7 @@ package edu.kit.kastel.sdq.featuremodel.impl;
 import edu.kit.kastel.sdq.featuremodel.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -58,8 +59,6 @@ public class FeaturemodelFactoryImpl extends EFactoryImpl implements Featuremode
 		switch (eClass.getClassifierID()) {
 		case FeaturemodelPackage.FEATURE_DIAGRAM:
 			return createFeatureDiagram();
-		case FeaturemodelPackage.FEATURE:
-			return createFeature();
 		case FeaturemodelPackage.REQUIRES_CONSTRAINT:
 			return createRequiresConstraint();
 		case FeaturemodelPackage.EXCLUDES_CONSTRAINT:
@@ -74,8 +73,44 @@ public class FeaturemodelFactoryImpl extends EFactoryImpl implements Featuremode
 			return createAlternativeRelation();
 		case FeaturemodelPackage.METAMODEL:
 			return createMetamodel();
+		case FeaturemodelPackage.ROOT_FEATURE:
+			return createRootFeature();
+		case FeaturemodelPackage.FEATURE:
+			return createFeature();
+		case FeaturemodelPackage.SIMULATOR_COMPONENT:
+			return createSimulatorComponent();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+		case FeaturemodelPackage.STATE:
+			return createStateFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+		case FeaturemodelPackage.STATE:
+			return convertStateToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -99,6 +134,39 @@ public class FeaturemodelFactoryImpl extends EFactoryImpl implements Featuremode
 	public Feature createFeature() {
 		FeatureImpl feature = new FeatureImpl();
 		return feature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SimulatorComponent createSimulatorComponent() {
+		SimulatorComponentImpl simulatorComponent = new SimulatorComponentImpl();
+		return simulatorComponent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public State createStateFromString(EDataType eDataType, String initialValue) {
+		State result = State.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertStateToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
@@ -176,6 +244,17 @@ public class FeaturemodelFactoryImpl extends EFactoryImpl implements Featuremode
 	public Metamodel createMetamodel() {
 		MetamodelImpl metamodel = new MetamodelImpl();
 		return metamodel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RootFeature createRootFeature() {
+		RootFeatureImpl rootFeature = new RootFeatureImpl();
+		return rootFeature;
 	}
 
 	/**

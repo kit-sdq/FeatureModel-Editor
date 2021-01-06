@@ -75,11 +75,11 @@ public class FeaturemodelSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case FeaturemodelPackage.FEATURE: {
-			Feature feature = (Feature) theEObject;
-			T result = caseFeature(feature);
+		case FeaturemodelPackage.ABSTRACT_FEATURE: {
+			AbstractFeature abstractFeature = (AbstractFeature) theEObject;
+			T result = caseAbstractFeature(abstractFeature);
 			if (result == null)
-				result = caseNamedElement(feature);
+				result = caseNamedElement(abstractFeature);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -192,6 +192,35 @@ public class FeaturemodelSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case FeaturemodelPackage.ROOT_FEATURE: {
+			RootFeature rootFeature = (RootFeature) theEObject;
+			T result = caseRootFeature(rootFeature);
+			if (result == null)
+				result = caseAbstractFeature(rootFeature);
+			if (result == null)
+				result = caseNamedElement(rootFeature);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FeaturemodelPackage.FEATURE: {
+			Feature feature = (Feature) theEObject;
+			T result = caseFeature(feature);
+			if (result == null)
+				result = caseAbstractFeature(feature);
+			if (result == null)
+				result = caseNamedElement(feature);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case FeaturemodelPackage.SIMULATOR_COMPONENT: {
+			SimulatorComponent simulatorComponent = (SimulatorComponent) theEObject;
+			T result = caseSimulatorComponent(simulatorComponent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -213,6 +242,21 @@ public class FeaturemodelSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Feature</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractFeature(AbstractFeature object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Feature</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -224,6 +268,21 @@ public class FeaturemodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFeature(Feature object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Simulator Component</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Simulator Component</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSimulatorComponent(SimulatorComponent object) {
 		return null;
 	}
 
@@ -404,6 +463,21 @@ public class FeaturemodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMetamodel(Metamodel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Root Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Root Feature</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRootFeature(RootFeature object) {
 		return null;
 	}
 

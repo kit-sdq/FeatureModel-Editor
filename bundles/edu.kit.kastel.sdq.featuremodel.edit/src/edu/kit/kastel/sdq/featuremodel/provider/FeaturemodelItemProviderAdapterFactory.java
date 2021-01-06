@@ -119,6 +119,29 @@ public class FeaturemodelItemProviderAdapterFactory extends FeaturemodelAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.kit.kastel.sdq.featuremodel.SimulatorComponent} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SimulatorComponentItemProvider simulatorComponentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.kit.kastel.sdq.featuremodel.SimulatorComponent}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSimulatorComponentAdapter() {
+		if (simulatorComponentItemProvider == null) {
+			simulatorComponentItemProvider = new SimulatorComponentItemProvider(this);
+		}
+
+		return simulatorComponentItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link edu.kit.kastel.sdq.featuremodel.RequiresConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -280,6 +303,29 @@ public class FeaturemodelItemProviderAdapterFactory extends FeaturemodelAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link edu.kit.kastel.sdq.featuremodel.RootFeature} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RootFeatureItemProvider rootFeatureItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link edu.kit.kastel.sdq.featuremodel.RootFeature}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRootFeatureAdapter() {
+		if (rootFeatureItemProvider == null) {
+			rootFeatureItemProvider = new RootFeatureItemProvider(this);
+		}
+
+		return rootFeatureItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -386,8 +432,6 @@ public class FeaturemodelItemProviderAdapterFactory extends FeaturemodelAdapterF
 	public void dispose() {
 		if (featureDiagramItemProvider != null)
 			featureDiagramItemProvider.dispose();
-		if (featureItemProvider != null)
-			featureItemProvider.dispose();
 		if (requiresConstraintItemProvider != null)
 			requiresConstraintItemProvider.dispose();
 		if (excludesConstraintItemProvider != null)
@@ -402,6 +446,12 @@ public class FeaturemodelItemProviderAdapterFactory extends FeaturemodelAdapterF
 			alternativeRelationItemProvider.dispose();
 		if (metamodelItemProvider != null)
 			metamodelItemProvider.dispose();
+		if (rootFeatureItemProvider != null)
+			rootFeatureItemProvider.dispose();
+		if (featureItemProvider != null)
+			featureItemProvider.dispose();
+		if (simulatorComponentItemProvider != null)
+			simulatorComponentItemProvider.dispose();
 	}
 
 }

@@ -81,6 +81,7 @@ public class FeatureDiagramItemProvider extends NamedElementItemProvider {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(FeaturemodelPackage.Literals.FEATURE_DIAGRAM__CONSTRAINTS);
 			childrenFeatures.add(FeaturemodelPackage.Literals.FEATURE_DIAGRAM__FEATURES);
+			childrenFeatures.add(FeaturemodelPackage.Literals.FEATURE_DIAGRAM__ROOT_FEATURE);
 			childrenFeatures.add(FeaturemodelPackage.Literals.FEATURE_DIAGRAM__CHILD_RELATIONS);
 		}
 		return childrenFeatures;
@@ -147,6 +148,7 @@ public class FeatureDiagramItemProvider extends NamedElementItemProvider {
 		switch (notification.getFeatureID(FeatureDiagram.class)) {
 		case FeaturemodelPackage.FEATURE_DIAGRAM__CONSTRAINTS:
 		case FeaturemodelPackage.FEATURE_DIAGRAM__FEATURES:
+		case FeaturemodelPackage.FEATURE_DIAGRAM__ROOT_FEATURE:
 		case FeaturemodelPackage.FEATURE_DIAGRAM__CHILD_RELATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -173,6 +175,9 @@ public class FeatureDiagramItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(FeaturemodelPackage.Literals.FEATURE_DIAGRAM__FEATURES,
 				FeaturemodelFactory.eINSTANCE.createFeature()));
+
+		newChildDescriptors.add(createChildParameter(FeaturemodelPackage.Literals.FEATURE_DIAGRAM__ROOT_FEATURE,
+				FeaturemodelFactory.eINSTANCE.createRootFeature()));
 
 		newChildDescriptors.add(createChildParameter(FeaturemodelPackage.Literals.FEATURE_DIAGRAM__CHILD_RELATIONS,
 				FeaturemodelFactory.eINSTANCE.createMandatoryRelation()));

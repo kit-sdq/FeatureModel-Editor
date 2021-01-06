@@ -2,10 +2,11 @@
  */
 package edu.kit.kastel.sdq.featuremodel.impl;
 
+import edu.kit.kastel.sdq.featuremodel.AbstractFeature;
 import edu.kit.kastel.sdq.featuremodel.ChildRelation;
-import edu.kit.kastel.sdq.featuremodel.Feature;
 import edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage;
 
+import edu.kit.kastel.sdq.featuremodel.State;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link edu.kit.kastel.sdq.featuremodel.impl.ChildRelationImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link edu.kit.kastel.sdq.featuremodel.impl.ChildRelationImpl#getState <em>State</em>}</li>
  * </ul>
  *
  * @generated
@@ -36,7 +38,26 @@ public abstract class ChildRelationImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 * @ordered
 	 */
-	protected Feature parent;
+	protected AbstractFeature parent;
+
+	/**
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final State STATE_EDEFAULT = State.IN;
+	/**
+	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected State state = STATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,10 +84,10 @@ public abstract class ChildRelationImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 */
 	@Override
-	public Feature getParent() {
+	public AbstractFeature getParent() {
 		if (parent != null && parent.eIsProxy()) {
 			InternalEObject oldParent = (InternalEObject) parent;
-			parent = (Feature) eResolveProxy(oldParent);
+			parent = (AbstractFeature) eResolveProxy(oldParent);
 			if (parent != oldParent) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -81,7 +102,7 @@ public abstract class ChildRelationImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature basicGetParent() {
+	public AbstractFeature basicGetParent() {
 		return parent;
 	}
 
@@ -91,12 +112,36 @@ public abstract class ChildRelationImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 */
 	@Override
-	public void setParent(Feature newParent) {
-		Feature oldParent = parent;
+	public void setParent(AbstractFeature newParent) {
+		AbstractFeature oldParent = parent;
 		parent = newParent;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FeaturemodelPackage.CHILD_RELATION__PARENT, oldParent,
 					parent));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public State getState() {
+		return state;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setState(State newState) {
+		State oldState = state;
+		state = newState == null ? STATE_EDEFAULT : newState;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FeaturemodelPackage.CHILD_RELATION__STATE, oldState,
+					state));
 	}
 
 	/**
@@ -111,6 +156,8 @@ public abstract class ChildRelationImpl extends MinimalEObjectImpl.Container imp
 			if (resolve)
 				return getParent();
 			return basicGetParent();
+		case FeaturemodelPackage.CHILD_RELATION__STATE:
+			return getState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -124,7 +171,10 @@ public abstract class ChildRelationImpl extends MinimalEObjectImpl.Container imp
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case FeaturemodelPackage.CHILD_RELATION__PARENT:
-			setParent((Feature) newValue);
+			setParent((AbstractFeature) newValue);
+			return;
+		case FeaturemodelPackage.CHILD_RELATION__STATE:
+			setState((State) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -139,7 +189,10 @@ public abstract class ChildRelationImpl extends MinimalEObjectImpl.Container imp
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case FeaturemodelPackage.CHILD_RELATION__PARENT:
-			setParent((Feature) null);
+			setParent((AbstractFeature) null);
+			return;
+		case FeaturemodelPackage.CHILD_RELATION__STATE:
+			setState(STATE_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -155,8 +208,27 @@ public abstract class ChildRelationImpl extends MinimalEObjectImpl.Container imp
 		switch (featureID) {
 		case FeaturemodelPackage.CHILD_RELATION__PARENT:
 			return parent != null;
+		case FeaturemodelPackage.CHILD_RELATION__STATE:
+			return state != STATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (state: ");
+		result.append(state);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ChildRelationImpl

@@ -2,6 +2,7 @@
  */
 package edu.kit.kastel.sdq.featuremodel.impl;
 
+import edu.kit.kastel.sdq.featuremodel.AbstractFeature;
 import edu.kit.kastel.sdq.featuremodel.AlternativeRelation;
 import edu.kit.kastel.sdq.featuremodel.ChildRelation;
 import edu.kit.kastel.sdq.featuremodel.Constraint;
@@ -17,10 +18,14 @@ import edu.kit.kastel.sdq.featuremodel.NamedElement;
 import edu.kit.kastel.sdq.featuremodel.OptionalRelation;
 import edu.kit.kastel.sdq.featuremodel.OrRelation;
 import edu.kit.kastel.sdq.featuremodel.RequiresConstraint;
+import edu.kit.kastel.sdq.featuremodel.RootFeature;
+import edu.kit.kastel.sdq.featuremodel.SimulatorComponent;
 import edu.kit.kastel.sdq.featuremodel.SingleChildRelation;
 
+import edu.kit.kastel.sdq.featuremodel.State;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -45,7 +50,28 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass abstractFeatureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass featureEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass simulatorComponentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum stateEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,6 +156,13 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 	 * @generated
 	 */
 	private EClass metamodelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rootFeatureEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -251,6 +284,16 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 	 * @generated
 	 */
 	@Override
+	public EClass getAbstractFeature() {
+		return abstractFeatureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getFeature() {
 		return featureEClass;
 	}
@@ -263,6 +306,56 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 	@Override
 	public EReference getFeature_Metamodel() {
 		return (EReference) featureEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getFeature_Simulatorcomponent() {
+		return (EReference) featureEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getFeature_State() {
+		return (EAttribute) featureEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getSimulatorComponent() {
+		return simulatorComponentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSimulatorComponent_Path() {
+		return (EAttribute) simulatorComponentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getState() {
+		return stateEEnum;
 	}
 
 	/**
@@ -301,6 +394,16 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 	 * @generated
 	 */
 	@Override
+	public EAttribute getConstraint_State() {
+		return (EAttribute) constraintEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getChildRelation() {
 		return childRelationEClass;
 	}
@@ -313,6 +416,16 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 	@Override
 	public EReference getChildRelation_Parent() {
 		return (EReference) childRelationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getChildRelation_State() {
+		return (EAttribute) childRelationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -461,6 +574,26 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 	 * @generated
 	 */
 	@Override
+	public EReference getMetamodel_MainPackage() {
+		return (EReference) metamodelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getRootFeature() {
+		return rootFeatureEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public FeaturemodelFactory getFeaturemodelFactory() {
 		return (FeaturemodelFactory) getEFactoryInstance();
 	}
@@ -491,15 +624,16 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 		createEReference(featureDiagramEClass, FEATURE_DIAGRAM__ROOT_FEATURE);
 		createEReference(featureDiagramEClass, FEATURE_DIAGRAM__CHILD_RELATIONS);
 
-		featureEClass = createEClass(FEATURE);
-		createEReference(featureEClass, FEATURE__METAMODEL);
+		abstractFeatureEClass = createEClass(ABSTRACT_FEATURE);
 
 		constraintEClass = createEClass(CONSTRAINT);
 		createEReference(constraintEClass, CONSTRAINT__SOURCE);
 		createEReference(constraintEClass, CONSTRAINT__TARGET);
+		createEAttribute(constraintEClass, CONSTRAINT__STATE);
 
 		childRelationEClass = createEClass(CHILD_RELATION);
 		createEReference(childRelationEClass, CHILD_RELATION__PARENT);
+		createEAttribute(childRelationEClass, CHILD_RELATION__STATE);
 
 		singleChildRelationEClass = createEClass(SINGLE_CHILD_RELATION);
 		createEReference(singleChildRelationEClass, SINGLE_CHILD_RELATION__CHILD);
@@ -524,6 +658,20 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 
 		metamodelEClass = createEClass(METAMODEL);
 		createEAttribute(metamodelEClass, METAMODEL__NAME);
+		createEReference(metamodelEClass, METAMODEL__MAIN_PACKAGE);
+
+		rootFeatureEClass = createEClass(ROOT_FEATURE);
+
+		featureEClass = createEClass(FEATURE);
+		createEReference(featureEClass, FEATURE__METAMODEL);
+		createEReference(featureEClass, FEATURE__SIMULATORCOMPONENT);
+		createEAttribute(featureEClass, FEATURE__STATE);
+
+		simulatorComponentEClass = createEClass(SIMULATOR_COMPONENT);
+		createEAttribute(simulatorComponentEClass, SIMULATOR_COMPONENT__PATH);
+
+		// Create enums
+		stateEEnum = createEEnum(STATE);
 	}
 
 	/**
@@ -556,7 +704,7 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 
 		// Add supertypes to classes
 		featureDiagramEClass.getESuperTypes().add(this.getNamedElement());
-		featureEClass.getESuperTypes().add(this.getNamedElement());
+		abstractFeatureEClass.getESuperTypes().add(this.getNamedElement());
 		singleChildRelationEClass.getESuperTypes().add(this.getChildRelation());
 		multipleChildrenRelationEClass.getESuperTypes().add(this.getChildRelation());
 		requiresConstraintEClass.getESuperTypes().add(this.getConstraint());
@@ -565,6 +713,8 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 		optionalRelationEClass.getESuperTypes().add(this.getSingleChildRelation());
 		orRelationEClass.getESuperTypes().add(this.getMultipleChildrenRelation());
 		alternativeRelationEClass.getESuperTypes().add(this.getMultipleChildrenRelation());
+		rootFeatureEClass.getESuperTypes().add(this.getAbstractFeature());
+		featureEClass.getESuperTypes().add(this.getAbstractFeature());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(featureDiagramEClass, FeatureDiagram.class, "FeatureDiagram", !IS_ABSTRACT, !IS_INTERFACE,
@@ -572,35 +722,37 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 		initEReference(getFeatureDiagram_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1,
 				FeatureDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFeatureDiagram_Features(), this.getFeature(), null, "features", null, 1, -1,
+		initEReference(getFeatureDiagram_Features(), this.getFeature(), null, "features", null, 0, -1,
 				FeatureDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFeatureDiagram_RootFeature(), this.getFeature(), null, "rootFeature", null, 1, 1,
-				FeatureDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getFeatureDiagram_RootFeature(), this.getRootFeature(), null, "rootFeature", null, 1, 1,
+				FeatureDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeatureDiagram_ChildRelations(), this.getChildRelation(), null, "childRelations", null, 0, -1,
 				FeatureDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFeature_Metamodel(), this.getMetamodel(), null, "metamodel", null, 0, 1, Feature.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(abstractFeatureEClass, AbstractFeature.class, "AbstractFeature", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConstraint_Source(), this.getFeature(), null, "source", null, 1, 1, Constraint.class,
+		initEReference(getConstraint_Source(), this.getAbstractFeature(), null, "source", null, 1, 1, Constraint.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraint_Target(), this.getFeature(), null, "target", null, 1, 1, Constraint.class,
+		initEReference(getConstraint_Target(), this.getAbstractFeature(), null, "target", null, 1, 1, Constraint.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConstraint_State(), this.getState(), "state", "", 1, 1, Constraint.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(childRelationEClass, ChildRelation.class, "ChildRelation", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getChildRelation_Parent(), this.getFeature(), null, "parent", null, 1, 1, ChildRelation.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getChildRelation_Parent(), this.getAbstractFeature(), null, "parent", null, 1, 1,
+				ChildRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getChildRelation_State(), this.getState(), "state", "", 1, 1, ChildRelation.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(singleChildRelationEClass, SingleChildRelation.class, "SingleChildRelation", IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -641,6 +793,33 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMetamodel_Name(), ecorePackage.getEString(), "name", null, 1, 1, Metamodel.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMetamodel_MainPackage(), ecorePackage.getEPackage(), null, "mainPackage", null, 1, 1,
+				Metamodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(rootFeatureEClass, RootFeature.class, "RootFeature", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeature_Metamodel(), this.getMetamodel(), null, "metamodel", null, 0, 1, Feature.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFeature_Simulatorcomponent(), this.getSimulatorComponent(), null, "simulatorcomponent", null,
+				0, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeature_State(), this.getState(), "state", "", 1, 1, Feature.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(simulatorComponentEClass, SimulatorComponent.class, "SimulatorComponent", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSimulatorComponent_Path(), ecorePackage.getEString(), "path", null, 1, 1,
+				SimulatorComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(stateEEnum, State.class, "State");
+		addEEnumLiteral(stateEEnum, State.IN);
+		addEEnumLiteral(stateEEnum, State.OUT);
 
 		// Create resource
 		createResource(eNS_URI);

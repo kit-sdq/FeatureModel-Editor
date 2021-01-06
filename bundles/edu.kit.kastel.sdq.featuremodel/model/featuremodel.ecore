@@ -4,26 +4,27 @@
   <eClassifiers xsi:type="ecore:EClass" name="FeatureDiagram" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
         eType="#//Constraint" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="features" lowerBound="1"
-        upperBound="-1" eType="#//Feature" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//Feature" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rootFeature" lowerBound="1"
-        eType="#//Feature"/>
+        eType="#//RootFeature" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="childRelations" upperBound="-1"
         eType="#//ChildRelation" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" eType="#//Metamodel"
-        containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractFeature" abstract="true" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="#//Feature"/>
+        eType="#//AbstractFeature"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//Feature"/>
+        eType="#//AbstractFeature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" lowerBound="1" eType="#//State"
+        defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ChildRelation" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" lowerBound="1"
-        eType="#//Feature"/>
+        eType="#//AbstractFeature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" lowerBound="1" eType="#//State"
+        defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SingleChildRelation" abstract="true"
       eSuperTypes="#//ChildRelation">
@@ -45,5 +46,23 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Metamodel">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mainPackage" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RootFeature" eSuperTypes="#//AbstractFeature"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//AbstractFeature">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" eType="#//Metamodel"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simulatorcomponent" eType="#//SimulatorComponent"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" lowerBound="1" eType="#//State"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimulatorComponent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="State">
+    <eLiterals name="IN"/>
+    <eLiterals name="OUT" value="1"/>
   </eClassifiers>
 </ecore:EPackage>

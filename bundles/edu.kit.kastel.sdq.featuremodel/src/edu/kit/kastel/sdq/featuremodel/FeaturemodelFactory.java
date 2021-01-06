@@ -40,6 +40,15 @@ public interface FeaturemodelFactory extends EFactory {
 	Feature createFeature();
 
 	/**
+	 * Returns a new object of class '<em>Simulator Component</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Simulator Component</em>'.
+	 * @generated
+	 */
+	SimulatorComponent createSimulatorComponent();
+
+	/**
 	 * Returns a new object of class '<em>Requires Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,6 +110,15 @@ public interface FeaturemodelFactory extends EFactory {
 	 * @generated
 	 */
 	Metamodel createMetamodel();
+
+	/**
+	 * Returns a new object of class '<em>Root Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Root Feature</em>'.
+	 * @generated
+	 */
+	RootFeature createRootFeature();
 
 	/**
 	 * Returns the package supported by this factory.

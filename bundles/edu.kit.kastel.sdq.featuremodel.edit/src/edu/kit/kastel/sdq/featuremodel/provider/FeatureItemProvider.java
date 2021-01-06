@@ -15,6 +15,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -23,7 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FeatureItemProvider extends NamedElementItemProvider {
+public class FeatureItemProvider extends AbstractFeatureItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -45,24 +46,41 @@ public class FeatureItemProvider extends NamedElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMetamodelPropertyDescriptor(object);
+			addSimulatorcomponentPropertyDescriptor(object);
+			addStatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Metamodel feature.
+	 * This adds a property descriptor for the Simulatorcomponent feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMetamodelPropertyDescriptor(Object object) {
+	protected void addSimulatorcomponentPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(), getString("_UI_Feature_metamodel_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Feature_metamodel_feature",
+						getResourceLocator(), getString("_UI_Feature_simulatorcomponent_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Feature_simulatorcomponent_feature",
 								"_UI_Feature_type"),
-						FeaturemodelPackage.Literals.FEATURE__METAMODEL, true, false, true, null, null, null));
+						FeaturemodelPackage.Literals.FEATURE__SIMULATORCOMPONENT, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the State feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Feature_state_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Feature_state_feature",
+								"_UI_Feature_type"),
+						FeaturemodelPackage.Literals.FEATURE__STATE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -78,6 +96,7 @@ public class FeatureItemProvider extends NamedElementItemProvider {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(FeaturemodelPackage.Literals.FEATURE__METAMODEL);
+			childrenFeatures.add(FeaturemodelPackage.Literals.FEATURE__SIMULATORCOMPONENT);
 		}
 		return childrenFeatures;
 	}
@@ -141,7 +160,11 @@ public class FeatureItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Feature.class)) {
+		case FeaturemodelPackage.FEATURE__STATE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case FeaturemodelPackage.FEATURE__METAMODEL:
+		case FeaturemodelPackage.FEATURE__SIMULATORCOMPONENT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -161,6 +184,9 @@ public class FeatureItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(FeaturemodelPackage.Literals.FEATURE__METAMODEL,
 				FeaturemodelFactory.eINSTANCE.createMetamodel()));
+
+		newChildDescriptors.add(createChildParameter(FeaturemodelPackage.Literals.FEATURE__SIMULATORCOMPONENT,
+				FeaturemodelFactory.eINSTANCE.createSimulatorComponent()));
 	}
 
 }

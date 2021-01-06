@@ -4,6 +4,8 @@ package edu.kit.kastel.sdq.featuremodel.provider;
 
 import edu.kit.kastel.sdq.featuremodel.FeaturemodelPackage;
 
+import edu.kit.kastel.sdq.featuremodel.SingleChildRelation;
+import edu.kit.kastel.sdq.featuremodel.State;
 import java.util.Collection;
 import java.util.List;
 
@@ -79,7 +81,10 @@ public class SingleChildRelationItemProvider extends ChildRelationItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_SingleChildRelation_type");
+		State labelValue = ((SingleChildRelation) object).getState();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ? getString("_UI_SingleChildRelation_type")
+				: getString("_UI_SingleChildRelation_type") + " " + label;
 	}
 
 	/**
