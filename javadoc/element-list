@@ -1,4 +1,7 @@
 edu.kit.kastel.sdq.featuremodel
+edu.kit.kastel.sdq.featuremodel.custom
+edu.kit.kastel.sdq.featuremodel.custom.externaljavaactions
+edu.kit.kastel.sdq.featuremodel.custom.util
 edu.kit.kastel.sdq.featuremodel.design
 edu.kit.kastel.sdq.featuremodel.impl
 edu.kit.kastel.sdq.featuremodel.newfmprojectfromecorewizard
