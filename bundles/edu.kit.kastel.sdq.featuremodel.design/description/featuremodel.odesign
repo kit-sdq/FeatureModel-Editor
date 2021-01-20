@@ -417,15 +417,9 @@
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
                 <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="Open Representation FM Action" id="OpenRepresentationFM">
-                  <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="Open Representation FM Action" id="OpenRepresentationFM">
-                    <parameters name="element" value="var:element"/>
-                    <parameters name="RepresentationDescription" value="Entities"/>
-                    <parameters name="Diagram name" value="aql:element.name + ' diagram'"/>
-                    <parameters name="Viewpoint" value="Design"/>
-                  </subModelOperations>
                   <parameters name="element" value="var:element"/>
                   <parameters name="RepresentationDescription" value="Entities"/>
-                  <parameters name="Diagram name" value="aql:element.name + ' diagram'"/>
+                  <parameters name="Diagram name" value="aql:element.name"/>
                   <parameters name="Viewpoint" value="Design"/>
                 </subModelOperations>
               </firstModelOperations>

@@ -15,6 +15,7 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 
 import edu.kit.kastel.sdq.case4lang.common.FileUtils;
 import edu.kit.kastel.sdq.featuremodel.FeatureDiagram;
+import edu.kit.kastel.sdq.featuremodel.custom.util.SiriusCustomUtil.IResourceType;
 
 public class RemainingEcoreFileProvider implements IStructuredContentProvider {
 	
@@ -28,36 +29,22 @@ public class RemainingEcoreFileProvider implements IStructuredContentProvider {
 	public Object[] getElements(Object inputElement) {
 		IProject[] allProjects = ((IWorkspace) inputElement).getRoot().getProjects();
 
-		ArrayList<IFile> ecoreFiles = new ArrayList<IFile>();
+		ArrayList<IResource> ecoreFiles = new ArrayList<IResource>();
 		for (IProject project : allProjects) {
 			if (project.isOpen()) {
-				addEcoreFilesToList(ecoreFiles, project);
+				SiriusCustomUtil.addIResourcesToList(ecoreFiles, project, IResourceType.ECOREFILE);
 			}
 		}
 
 		ArrayList<IFile> remainingEcoreFiles = new ArrayList<IFile>();
-		for(IFile ecoreFile : ecoreFiles) {
-			EPackage mainPackage = FMUtil.getMainPackageByURI(FileUtils.getFileURI(ecoreFile), TransactionUtil.getEditingDomain(fd));
+		for(IResource ecoreFile : ecoreFiles) {
+			EPackage mainPackage = FMUtil.getMainPackageByURI(FileUtils.getFileURI((IFile) ecoreFile), TransactionUtil.getEditingDomain(fd));
 			if(!FMUtil.metamodelAlreadyExists(mainPackage, fd)) {
-				remainingEcoreFiles.add(ecoreFile);
+				remainingEcoreFiles.add((IFile) ecoreFile);
 			}
 		}
 		return remainingEcoreFiles.toArray();
 
 	}
 
-	private void addEcoreFilesToList(List<IFile> ecoreFiles, IContainer container) {
-		try {
-			for (IResource member : container.members()) {
-				if (member instanceof IContainer)
-					addEcoreFilesToList(ecoreFiles, (IContainer) member);
-				if (member instanceof IFile && member.getFileExtension().equals("ecore")) {
-					ecoreFiles.add((IFile) member);
-				}	
-			}
-		} catch (CoreException e) {
-			System.out.println("Failed to read " + container.getFullPath().toString() + ".");
-			//Ignore this project
-		}
-	}
 }

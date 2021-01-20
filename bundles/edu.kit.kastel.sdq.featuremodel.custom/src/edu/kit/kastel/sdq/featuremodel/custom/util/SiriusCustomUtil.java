@@ -1,53 +1,148 @@
 package edu.kit.kastel.sdq.featuremodel.custom.util;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.sirius.business.api.componentization.ViewpointRegistry;
 import org.eclipse.sirius.business.api.dialect.command.CreateRepresentationCommand;
 import org.eclipse.sirius.business.api.helper.SiriusUtil;
 import org.eclipse.sirius.business.api.session.Session;
+import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.ui.business.api.viewpoint.ViewpointSelectionCallback;
 import org.eclipse.sirius.ui.business.internal.commands.ChangeViewpointSelectionCommand;
 import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
 import org.eclipse.sirius.viewpoint.description.Viewpoint;
 
+import edu.kit.kastel.sdq.case4lang.common.FileUtils;
+import edu.kit.kastel.sdq.featuremodel.Metamodel;
+
 /**
  * Class containing some useful static methods to work with Sirius
  * @see {@link SiriusUtil}
- * @author Amine Kechaou
+ * @author Amine Kechaou, Sebastian Weber
  *
  */
 public class SiriusCustomUtil {
-	
+
 	public static URI getRepresentationsURI(IProject project) {
 		return URI.createPlatformResourceURI(project.getFullPath().append("/representations." + SiriusUtil.SESSION_RESOURCE_EXTENSION).toOSString(), true);
 	}
-	
+
+	public static EPackage getEPackageEcoreFileByEPackageFeatureModel(EPackage mainPackageFeatureModel) {
+		IProject[] allProjects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+
+		for (IProject project : allProjects) {
+			List<IResource> ecoreFiles = getIResourcesByIProject(project, IResourceType.ECOREFILE);
+			for(IResource ecoreFile : ecoreFiles) {
+				EPackage mainPackageEcore = FMUtil.getMainPackageByURI(FileUtils.getFileURI((IFile) ecoreFile), TransactionUtil.getEditingDomain(mainPackageFeatureModel));
+				if(mainPackageEcore.equals(mainPackageFeatureModel)) {
+					return mainPackageEcore;
+				}
+			}
+		}
+		return null;
+	}
+
+	public static IResource getIResourceByEPackage(EPackage mainPackageFeatureModel, IResourceType type) {
+		IProject[] allProjects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
+		for (IProject project : allProjects) {
+			List<IResource> ecoreFiles = getIResourcesByIProject(project, IResourceType.ECOREFILE);
+			for(IResource ecoreFile : ecoreFiles) {
+				EPackage mainPackage = FMUtil.getMainPackageByURI(FileUtils.getFileURI((IFile) ecoreFile), TransactionUtil.getEditingDomain(mainPackageFeatureModel));
+				if(mainPackage.equals(mainPackageFeatureModel)) {
+					switch (type) {
+					case ECOREFILE:
+						return ecoreFile;
+					case PROJECT:
+						return project;
+					case AIRDFILE:
+						List<IResource> airdFile = getIResourcesByIProject(project, IResourceType.AIRDFILE);
+						return airdFile.size() > 0 ? airdFile.get(0) : null;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public enum IResourceType {
+		PROJECT,
+		ECOREFILE,
+		AIRDFILE;
+	}
+
+	public static void addIResourcesToList(List<IResource> files, IContainer container, IResourceType type) {
+		try {
+			if(type == IResourceType.PROJECT) {
+				if(container instanceof IProject) {
+					files.add(container);
+				} else if (container instanceof IWorkspace) {
+					Arrays.stream(((IWorkspace) container).getRoot().getProjects()).forEach(x -> addIResourcesToList(files, x, type));;
+				}
+			} else {
+				for (IResource member : container.members()) {
+					if (member instanceof IContainer)
+						addIResourcesToList(files, (IContainer) member, type);
+					if (member instanceof IFile) {
+						if(member.getFileExtension().equals("ecore") && type == IResourceType.ECOREFILE) {
+							files.add((IFile) member);
+						} else if (member.getFileExtension().equals(SiriusUtil.SESSION_RESOURCE_EXTENSION) && type == IResourceType.AIRDFILE) {
+							files.add((IFile) member);
+						}
+
+					}
+				}
+			}
+		} catch (CoreException e) {
+			System.out.println("Failed to read " + container.getFullPath().toString() + ".");
+			//Ignore this project
+		}
+	}
+
+	public static List<IResource> getIResourcesByIProject(IProject project, IResourceType type){
+		ArrayList<IResource> files = new ArrayList<IResource>();
+		if (project.isOpen()) {
+			addIResourcesToList(files, project, type);
+		}
+		return files;
+	}
+
 	public static void selectViewpoints(Session session, HashSet<Viewpoint> viewpoints, boolean createRepresentation, IProgressMonitor monitor) {
-        final ViewpointSelectionCallback selectionCallback = new ViewpointSelectionCallback();
-        final TransactionalEditingDomain domain = session.getTransactionalEditingDomain();
-        Collection<Viewpoint> selectedViewpoints = session.getSelectedViewpoints(false);
-        for (Viewpoint v : viewpoints) {
-        	if (selectedViewpoints.contains(v))
-        		viewpoints.remove(v);
-        }
+		final ViewpointSelectionCallback selectionCallback = new ViewpointSelectionCallback();
+		final TransactionalEditingDomain domain = session.getTransactionalEditingDomain();
+		Collection<Viewpoint> selectedViewpoints = session.getSelectedViewpoints(false);
+		for (Viewpoint v : viewpoints) {
+			if (selectedViewpoints.contains(v))
+				viewpoints.remove(v);
+		}
 		@SuppressWarnings("restriction")
 		final Command command = new ChangeViewpointSelectionCommand(session, selectionCallback, viewpoints, new HashSet<Viewpoint>(), createRepresentation, SubMonitor.convert(monitor));
-        domain.getCommandStack().execute(command);
+		domain.getCommandStack().execute(command);
 	}
-	
+
 	public static void selectViewpoints(Session session, List<String> viewpointNames, boolean createRepresentation, IProgressMonitor monitor) {
 		final Set<Viewpoint> registry = ViewpointRegistry.getInstance().getViewpoints();
 		HashSet<Viewpoint> viewpoints = new HashSet<Viewpoint>();
@@ -58,17 +153,17 @@ public class SiriusCustomUtil {
 		}
 		selectViewpoints(session, viewpoints, createRepresentation, monitor);
 	}
-	
+
 	public static DRepresentation createRepresentation(Session session, String representationName, RepresentationDescription description, EObject semantic, IProgressMonitor monitor) {
 		TransactionalEditingDomain domain = session.getTransactionalEditingDomain();
-        final CreateRepresentationCommand createRepresentationCommand = new CreateRepresentationCommand(
-                session, description, semantic,
-                representationName, SubMonitor.convert(monitor));
-       
-        domain.getCommandStack().execute(createRepresentationCommand);
-        return createRepresentationCommand.getCreatedRepresentation();
+		final CreateRepresentationCommand createRepresentationCommand = new CreateRepresentationCommand(
+				session, description, semantic,
+				representationName, SubMonitor.convert(monitor));
+
+		domain.getCommandStack().execute(createRepresentationCommand);
+		return createRepresentationCommand.getCreatedRepresentation();
 	}
-	
+
 	public static Viewpoint findViewpoint(String viewpointName) {
 		Viewpoint viewpoint = null;
 		for (Viewpoint v: ViewpointRegistry.getInstance().getViewpoints()) {
@@ -77,19 +172,19 @@ public class SiriusCustomUtil {
 		}
 		return viewpoint;
 	}
-	
-    public static Viewpoint getSelectedViewpointByName(Session session, String viewpointName) {
-    	Viewpoint selectedViewpoint = null;
-        Collection<Viewpoint> selectedViewpoints = session.getSelectedViewpoints(false);
-        for (Viewpoint v : selectedViewpoints) {
-        	if (viewpointName.equals(v.getName())) {
-        		selectedViewpoint = v;
-        		break;
-        	}
-        }
-        return selectedViewpoint;
+
+	public static Viewpoint getSelectedViewpointByName(Session session, String viewpointName) {
+		Viewpoint selectedViewpoint = null;
+		Collection<Viewpoint> selectedViewpoints = session.getSelectedViewpoints(false);
+		for (Viewpoint v : selectedViewpoints) {
+			if (viewpointName.equals(v.getName())) {
+				selectedViewpoint = v;
+				break;
+			}
+		}
+		return selectedViewpoint;
 	}
-	
+
 	public static RepresentationDescription findDescription(Viewpoint viewpoint, String descriptionName) {
 		RepresentationDescription description = null;
 		for (RepresentationDescription d : viewpoint.getOwnedRepresentations()) {
@@ -98,11 +193,11 @@ public class SiriusCustomUtil {
 		}
 		return description;
 	}
-	
+
 	public static boolean uriAlreadyLoaded(URI uri, Session session) {
 		return getResourceByURI(uri, session) != null;
 	}
-	
+
 	public static Resource getResourceByURI(URI uri, Session session) {
 		Collection<Resource> resources = session.getSemanticResources();
 		for (Resource r : resources) {
@@ -111,5 +206,5 @@ public class SiriusCustomUtil {
 		}
 		return null;
 	}
-	
+
 }

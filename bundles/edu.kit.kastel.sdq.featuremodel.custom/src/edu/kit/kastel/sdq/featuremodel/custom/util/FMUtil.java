@@ -45,13 +45,14 @@ public class FMUtil {
 				new EcoreResourceFactoryImpl());
 
 		Resource metamodelResource = resourceSet.getResource(uri, true);
+		EPackage ePackage = (EPackage) metamodelResource.getContents().get(0);
 
 		if (metamodelResource == null || metamodelResource.getContents().size() != 1) {
 			System.out.println("Could not load resource with URI " + uri.toString());
 			return null;
 		}
 		else {
-			return (EPackage) metamodelResource.getContents().get(0);
+			return ePackage;
 		}
 	}
 

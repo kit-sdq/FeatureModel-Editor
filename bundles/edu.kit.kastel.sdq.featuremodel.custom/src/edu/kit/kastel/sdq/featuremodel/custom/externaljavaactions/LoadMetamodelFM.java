@@ -34,12 +34,12 @@ public class LoadMetamodelFM implements IExternalJavaAction {
 		List<URI> uris = getURIs(FMUtil.openLoadResourceFromWorkspaceDialog(SHELL, fd, new RemainingEcoreFileProvider(fd)));
 		if (uris == null || uris.isEmpty()) //e.g. on cancel
 			return;
-
+		
 		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(feature);
 		
 		for(URI uri : uris) {
 			EPackage mainPackage = FMUtil.getMainPackageByURI(uri, editingDomain);
-        
+			
 	        // if the main EPackage was retrieved successfully and there still isn't a metamodel with this mainPackage in the FM
 			if (mainPackage != null && !FMUtil.metamodelAlreadyExists(mainPackage, (FeatureDiagram) feature.eContainer())) {
 				FMUtil.createMetamodel(mainPackage, feature);
