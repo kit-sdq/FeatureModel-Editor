@@ -18,13 +18,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
         eType="#//AbstractFeature"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" lowerBound="1" eType="#//State"
-        defaultValueLiteral=""/>
+        defaultValueLiteral="IN"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ChildRelation" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" lowerBound="1"
         eType="#//AbstractFeature"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" lowerBound="1" eType="#//State"
-        defaultValueLiteral=""/>
+        defaultValueLiteral="IN"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SingleChildRelation" abstract="true"
       eSuperTypes="#//ChildRelation">
@@ -56,7 +56,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="simulatorcomponent" eType="#//SimulatorComponent"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" lowerBound="1" eType="#//State"
-        defaultValueLiteral=""/>
+        defaultValueLiteral="IN"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimulatorComponent">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
