@@ -10,14 +10,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
@@ -25,14 +20,9 @@ import org.eclipse.sirius.business.internal.session.danalysis.DAnalysisSessionIm
 import org.eclipse.sirius.business.internal.session.danalysis.LocalResourceCollectorCrossReferencer;
 import org.eclipse.sirius.tools.api.ui.IExternalJavaAction;
 import org.eclipse.sirius.ui.business.api.dialect.DialectUIManager;
-import org.eclipse.sirius.ui.business.api.dialect.DialectUIServices;
 import org.eclipse.sirius.viewpoint.DRepresentation;
 import org.eclipse.sirius.viewpoint.description.RepresentationDescription;
 import org.eclipse.sirius.viewpoint.description.Viewpoint;
-import org.eclipse.sirius.diagram.provider.DSemanticDiagramItemProvider;
-import org.eclipse.sirius.diagram.ui.business.internal.dialect.DiagramDialectUI;
-import org.eclipse.sirius.diagram.ui.business.internal.dialect.DiagramDialectUIServices;
-
 import edu.kit.kastel.sdq.case4lang.common.FileUtils;
 import edu.kit.kastel.sdq.featuremodel.Metamodel;
 import edu.kit.kastel.sdq.featuremodel.custom.util.SiriusCustomUtil;
@@ -80,34 +70,13 @@ public class OpenRepresentationFM implements IExternalJavaAction {
 				representationName = ((representationDescription.getLabel() == null) ? representationDescription.getName() : representationDescription.getLabel());
 			}
 
-			/*
-			TransactionalEditingDomain domain = session.getTransactionalEditingDomain();
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				@Override
-				protected void doExecute() {
-					DialectManager.INSTANCE.createRepresentation(representationNameFinal, ePackage, representationDescription, session, new NullProgressMonitor());
-				}
-			});
-			domain.getCommandStack().flush();
-			representationOfEPackage = getRepresentation(DialectManager.INSTANCE.getRepresentations(representationDescription, session), ePackage);
-			*/
-			
 			representationOfEPackage = SiriusCustomUtil.createRepresentation(session, representationName, representationDescription, ePackage, monitor);
 
-			print(representationOfEPackage, ePackage);
 			DialectUIManager.INSTANCE.openEditor(session, representationOfEPackage, new NullProgressMonitor());
 		} else {
-			print(representationOfEPackage, ePackage);
 			DialectUIManager.INSTANCE.openEditor(session, representationOfEPackage, new NullProgressMonitor());
 		}
 
-	}
-	
-	private void print(DRepresentation representationOfEPackage, EPackage ePackage) {
-		System.out.println("###############################################################################");
-		ePackage.eAdapters().stream().forEach(x -> System.out.println(x));
-		System.out.println("###############################################################################");
-		representationOfEPackage.eAdapters().stream().forEach(x -> System.out.println(x));
 	}
 
 	@Override
